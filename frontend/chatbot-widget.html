@@ -1,0 +1,75 @@
+<!-- شات بوت Widget -->
+<div id="chatbotWidget" style="position:fixed;bottom:80px;right:20px;width:350px;max-width:90vw;background:var(--bg-card);border-radius:16px;border:1px solid var(--border-primary);box-shadow:0 8px 40px rgba(0,0,0,0.5);display:none;z-index:999;overflow:hidden;flex-direction:column;max-height:500px;">
+  <div style="padding:1rem;background:var(--gradient-primary);color:white;display:flex;justify-content:space-between;align-items:center;">
+    <span>🤖 المساعد الذكي</span>
+    <button onclick="toggleChatbot()" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">✕</button>
+  </div>
+  <div id="chatMessages" style="flex:1;padding:1rem;overflow-y:auto;max-height:350px;display:flex;flex-direction:column;gap:0.5rem;">
+    <div style="background:var(--bg-secondary);padding:0.75rem;border-radius:12px;max-width:80%;align-self:flex-start;">
+      👋 مرحباً! كيف يمكنني مساعدتك اليوم؟
+    </div>
+  </div>
+  <div style="padding:0.75rem;border-top:1px solid var(--border-secondary);display:flex;gap:0.5rem;">
+    <input type="text" id="chatInput" placeholder="اكتب رسالتك..." style="flex:1;padding:0.5rem 1rem;border-radius:8px;border:1px solid var(--border-secondary);background:var(--bg-primary);color:var(--text-primary);">
+    <button onclick="sendChatMessage()" style="padding:0.5rem 1rem;background:var(--gradient-primary);color:white;border:none;border-radius:8px;cursor:pointer;">إرسال</button>
+  </div>
+</div>
+
+<!-- زر فتح الشات -->
+<button onclick="toggleChatbot()" id="chatbotToggle" style="position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:var(--gradient-primary);color:white;border:none;font-size:2rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,109,91,0.4);z-index:999;">
+  💬
+</button>
+
+<script>
+  let isChatOpen = false;
+  
+  function toggleChatbot() {
+    const widget = document.getElementById('chatbotWidget');
+    const toggle = document.getElementById('chatbotToggle');
+    isChatOpen = !isChatOpen;
+    widget.style.display = isChatOpen ? 'flex' : 'none';
+    toggle.style.display = isChatOpen ? 'none' : 'flex';
+  }
+  
+  async function sendChatMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // عرض رسالة المستخدم
+    const messagesContainer = document.getElementById('chatMessages');
+    const userMsg = document.createElement('div');
+    userMsg.style.cssText = 'background:var(--gradient-primary);padding:0.75rem;border-radius:12px;max-width:80%;align-self:flex-end;color:white;';
+    userMsg.textContent = message;
+    messagesContainer.appendChild(userMsg);
+    input.value = '';
+    
+    // إرسال إلى الخادم
+    try {
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      
+      const data = await response.json();
+      
+      // عرض رد البوت
+      const botMsg = document.createElement('div');
+      botMsg.style.cssText = 'background:var(--bg-secondary);padding:0.75rem;border-radius:12px;max-width:80%;align-self:flex-start;';
+      botMsg.textContent = data.reply || 'عذراً، حدث خطأ. حاول مرة أخرى.';
+      messagesContainer.appendChild(botMsg);
+      
+      // تمرير للأسفل
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+    } catch (error) {
+      console.error('❌ خطأ:', error);
+    }
+  }
+  
+  // إرسال بالضغط على Enter
+  document.getElementById('chatInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sendChatMessage();
+  });
+</script>

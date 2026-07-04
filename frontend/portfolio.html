@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أعمالنا - Digital Agency MA</title>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        .page-loader { display: none !important; }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .portfolio-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-secondary);
+            transition: all 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .portfolio-item .image {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .portfolio-item .content {
+            padding: 1.5rem;
+        }
+        .portfolio-item .content h3 {
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-item .content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .portfolio-item .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .portfolio-item .tags .tag {
+            background: var(--bg-secondary);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-secondary);
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .filter-buttons .btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+        }
+        .filter-buttons .btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar" id="navbar">
+    <nav class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🚀</div>
+            <div class="nav-logo-text">
+                <span>Digital Agency</span>
+                <span>MOROCCO</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="portfolio.html" class="active">أعمالنا</a></li>
+            <li><a href="pricing.html">الأسعار</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="contact.html">تواصل</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <a href="login.html" class="btn btn-ghost btn-sm">🔐 تسجيل الدخول</a>
+            <a href="request-service.html" class="btn btn-primary btn-sm">اطلب خدمة</a>
+            <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== Portfolio Section ===== -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">🎨 أعمالنا</div>
+            <h1>مشاريع <span class="text-gradient">نفخر بها</span></h1>
+            <p>نماذج من أعمالنا في مختلف المجالات الرقمية</p>
+        </div>
+
+        <!-- تصفية -->
+        <div class="filter-buttons">
+            <button class="btn active" data-filter="all">الكل</button>
+            <button class="btn" data-filter="apps">تطبيقات</button>
+            <button class="btn" data-filter="websites">مواقع</button>
+            <button class="btn" data-filter="marketing">تسويق</button>
+            <button class="btn" data-filter="design">تصميم</button>
+            <button class="btn" data-filter="drone">درون</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- المشاريع -->
+            <div class="portfolio-item" data-category="apps">
+                <div class="image">📱</div>
+                <div class="content">
+                    <h3>تطبيق توصيل</h3>
+                    <p>تطبيق لتوصيل الطلبات في المغرب</p>
+                    <div class="tags">
+                        <span class="tag">تطبيقات</span>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="websites">
+                <div class="image">🌐</div>
+                <div class="content">
+                    <h3>موقع شركة عقارية</h3>
+                    <p>موقع عرض العقارات مع نظام بحث متقدم</p>
+                    <div class="tags">
+                        <span class="tag">مواقع</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="drone">
+                <div class="image">🚁</div>
+                <div class="content">
+                    <h3>تصوير درون - مشروع سياحي</h3>
+                    <p>تصوير جوي لمنطقة سياحية في مراكش</p>
+                    <div class="tags">
+                        <span class="tag">درون</span>
+                        <span class="tag">4K</span>
+                        <span class="tag">مونتاج</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="design">
+                <div class="image">🎨</div>
+                <div class="content">
+                    <h3>هوية بصرية - علامة تجارية</h3>
+                    <p>تصميم هوية بصرية متكاملة لعلامة تجارية</p>
+                    <div class="tags">
+                        <span class="tag">تصميم</span>
+                        <span class="tag">براندينغ</span>
+                        <span class="tag">Adobe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="marketing">
+                <div class="image">📊</div>
+                <div class="content">
+                    <h3>حملة تسويق رقمي</h3>
+                    <p>حملة تسويق رقمي لعلامة تجارية في المغرب</p>
+                    <div class="tags">
+                        <span class="tag">تسويق</span>
+                        <span class="tag">إعلانات</span>
+                        <span class="tag">SEO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="drone">
+                <div class="image">🏗️</div>
+                <div class="content">
+                    <h3>تصوير درون - مشروع عقاري</h3>
+                    <p>تصوير جوي لمشروع عقاري في الدار البيضاء</p>
+                    <div class="tags">
+                        <span class="tag">درون</span>
+                        <span class="tag">عقاري</span>
+                        <span class="tag">4K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>© 2024 Digital Agency MA. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script>
+    // ========================================
+    // تصفية المشاريع
+    // ========================================
+    document.querySelectorAll('.filter-buttons .btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // إزالة الـ active من جميع الأزرار
+            document.querySelectorAll('.filter-buttons .btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            const items = document.querySelectorAll('.portfolio-item');
+            
+            items.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

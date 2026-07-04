@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: 'Cairo', sans-serif; background: #0A0A0A; color: #FFFFFF; padding: 40px; }
+    .container { max-width: 600px; margin: 0 auto; background: #1A1A1A; padding: 40px; border-radius: 16px; border: 1px solid rgba(0, 109, 91, 0.3); }
+    .header { text-align: center; margin-bottom: 30px; }
+    .header h1 { font-size: 28px; background: linear-gradient(135deg, #006D5B, #00B894); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .content { color: #B0B0B0; line-height: 1.8; }
+    .btn { display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #006D5B, #00B894); color: white; text-decoration: none; border-radius: 8px; margin-top: 20px; }
+    .footer { margin-top: 30px; text-align: center; color: #6B6B6B; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 Digital Agency</h1>
+    </div>
+    <div class="content">
+      <h2>مرحباً {{name}}!</h2>
+      <p>شكراً لتسجيلك في <strong>Digital Agency</strong>. نحن سعداء بانضمامك إلينا.</p>
+      <p>يمكنك الآن تصفح خدماتنا والاستفادة من عروضنا المميزة.</p>
+      <a href="{{link}}" class="btn">🚀 ابدأ الآن</a>
+    </div>
+    <div class="footer">
+      <p>© 2024 Digital Agency. جميع الحقوق محفوظة.</p>
+      <p>{{email}}</p>
+    </div>
+  </div>
+</body>
+</html>

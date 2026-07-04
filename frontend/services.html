@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خدماتنا - Digital Agency MA</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .page-loader { display: none !important; }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<nav class="nav-mobile" id="mobileNav">
+  <a href="index.html" onclick="closeMobileNav()">الرئيسية</a>
+  <a href="services.html" onclick="closeMobileNav()">الخدمات</a>
+  <a href="portfolio.html" onclick="closeMobileNav()">أعمالنا</a>
+  <a href="pricing.html" onclick="closeMobileNav()">الأسعار</a>
+  <a href="about.html" onclick="closeMobileNav()">من نحن</a>
+  <a href="contact.html" onclick="closeMobileNav()">تواصل معنا</a>
+</nav>
+
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+  <nav class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🚀</div>
+      <div class="nav-logo-text">
+        <span>Digital Agency</span>
+        <span>MOROCCO</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="services.html" class="active">الخدمات</a></li>
+      <li><a href="portfolio.html">أعمالنا</a></li>
+      <li><a href="pricing.html">الأسعار</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="contact.html">تواصل</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== SERVICES PAGE ========== -->
+<section class="section" style="padding-top: 8rem;">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">⚡ خدماتنا</div>
+      <h1>كل ما تحتاجه <span class="text-gradient">رقمياً</span></h1>
+      <p>نقدم حلولاً رقمية متكاملة تساعد عملك على النمو والتوسع في العالم الرقمي</p>
+    </div>
+
+    <div class="services-grid" id="servicesGrid">
+      <!-- سيتم تحميلها بواسطة JavaScript -->
+    </div>
+  </div>
+</section>
+
+<div class="services-grid" id="servicesGrid">
+    <!-- سيتم تحميلها بواسطة JavaScript -->
+</div>
+
+<script>
+    // عند الضغط على زر "اطلب الخدمة"
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.service-card .btn')) {
+            const card = e.target.closest('.service-card');
+            const serviceId = card.dataset.serviceId;
+            window.location.href = `request-service.html?service=${serviceId}`;
+        }
+    });
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2024 Digital Agency MA. جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/services.js"></script>
+<script>
+  // إخفاء شاشة التحميل
+  document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('pageLoader');
+    if (loader) loader.style.display = 'none';
+  });
+</script>
+</body>
+</html>

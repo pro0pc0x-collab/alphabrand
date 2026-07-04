@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الأسعار - Digital Agency MA</title>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        .page-loader { display: none !important; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .pricing-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-secondary);
+            background: var(--bg-card);
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .pricing-card.featured {
+            border-color: var(--primary-light);
+            background: var(--gradient-card);
+        }
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1.5rem 0;
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        .pricing-card ul li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-secondary);
+        }
+        .pricing-card ul li:last-child {
+            border-bottom: none;
+        }
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar" id="navbar">
+    <nav class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🚀</div>
+            <div class="nav-logo-text">
+                <span>Digital Agency</span>
+                <span>MOROCCO</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="portfolio.html">أعمالنا</a></li>
+            <li><a href="pricing.html" class="active">الأسعار</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="contact.html">تواصل</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <a href="login.html" class="btn btn-ghost btn-sm">🔐 تسجيل الدخول</a>
+            <a href="request-service.html" class="btn btn-primary btn-sm">اطلب خدمة</a>
+            <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== Pricing Section ===== -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">💰 الأسعار</div>
+            <h1>خطط تناسب <span class="text-gradient">جميع الميزانيات</span></h1>
+            <p>اختر الخطة المناسبة لعملك وابدأ رحلتك الرقمية معنا</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- الخطة الأساسية -->
+            <div class="pricing-card">
+                <h3 style="font-size: 1.5rem;">🌟 أساسي</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">للمشاريع الصغيرة</p>
+                <div class="price">2,500 MAD</div>
+                <ul>
+                    <li>موقع إلكتروني أساسي</li>
+                    <li>تصميم متجاوب</li>
+                    <li>5 صفحات</li>
+                    <li>استضافة لمدة سنة</li>
+                    <li>دعم فني 30 يوم</li>
+                </ul>
+                <a href="request-service.html?plan=basic" class="btn btn-outline">اختر الخطة</a>
+            </div>
+
+            <!-- الخطة المتوسطة (مميزة) -->
+            <div class="pricing-card featured">
+                <div class="badge" style="margin-bottom: 1rem;">🔥 الأكثر طلباً</div>
+                <h3 style="font-size: 1.5rem;">🚀 احترافي</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">للمشاريع المتوسطة</p>
+                <div class="price">5,500 MAD</div>
+                <ul>
+                    <li>موقع متكامل + لوحة تحكم</li>
+                    <li>تصميم مخصص</li>
+                    <li>10 صفحات</li>
+                    <li>استضافة لمدة سنة</li>
+                    <li>دعم فني 3 أشهر</li>
+                    <li>تحسين محركات البحث</li>
+                </ul>
+                <a href="request-service.html?plan=professional" class="btn btn-primary">اختر الخطة</a>
+            </div>
+
+            <!-- الخطة المتقدمة -->
+            <div class="pricing-card">
+                <h3 style="font-size: 1.5rem;">💎 متقدم</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">للمشاريع الكبيرة</p>
+                <div class="price">8,500 MAD</div>
+                <ul>
+                    <li>موقع متكامل + تطبيق جوال</li>
+                    <li>تصميم حصري</li>
+                    <li>25 صفحة</li>
+                    <li>استضافة لمدة سنة</li>
+                    <li>دعم فني 6 أشهر</li>
+                    <li>تحسين محركات البحث</li>
+                    <li>تدريب على الاستخدام</li>
+                </ul>
+                <a href="request-service.html?plan=premium" class="btn btn-outline">اختر الخطة</a>
+            </div>
+        </div>
+
+        <!-- قسم الأسئلة الشائعة -->
+        <div style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">📋 أسئلة شائعة عن <span class="text-gradient">الأسعار</span></h2>
+            <div class="faq-list" style="max-width: 700px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل الأسعار شاملة الضرائب؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">جميع الأسعار المعلنة غير شاملة الضريبة على القيمة المضافة (TVA).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكنني الحصول على خطة مخصصة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">نعم! نقدم خططاً مخصصة حسب احتياجات مشروعك. تواصل معنا للحصول على عرض سعر.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل هناك رسوم خفية؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">لا، جميع الرسوم واضحة ومعلنة مسبقاً. لا توجد رسوم خفية أو إضافية.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>© 2024 Digital Agency MA. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

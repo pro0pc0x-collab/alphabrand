@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معنا - Digital Agency MA</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/darkmode.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+<div class="page-loader" id="pageLoader"><div class="page-loader-logo">🚀</div><div class="page-loader-bar"><div class="page-loader-progress"></div></div></div>
+<header class="navbar" id="navbar">
+  <nav class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🚀</div><div class="nav-logo-text"><span>Digital Agency</span><span>MOROCCO</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li><li><a href="services.html">الخدمات</a></li>
+      <li><a href="portfolio.html">أعمالنا</a></li><li><a href="pricing.html">الأسعار</a></li>
+      <li><a href="contact.html" class="active">تواصل</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon-dark">🌙</span><span class="theme-icon-light">☀️</span></button>
+      <a href="request-service.html" class="btn btn-primary btn-sm">اطلب خدمة</a>
+    </div>
+  </nav>
+</header>
+
+<main style="padding-top:100px;padding-bottom:4rem">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div class="badge">📬 تواصل معنا</div>
+      <h1>نحن هنا <span class="text-gradient">لمساعدتك</span></h1>
+      <p>تواصل معنا واحصل على استشارة مجانية خلال 24 ساعة</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:start" data-reveal>
+      <!-- Contact Info -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">📞</div>
+          <h3 style="font-size:1rem;margin-bottom:0.25rem">الهاتف</h3>
+          <a href="tel:+212600000000" style="color:var(--primary-light);font-size:1.1rem;font-weight:600">+212 600 000 000</a>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">💬</div>
+          <h3 style="font-size:1rem;margin-bottom:0.5rem">واتساب</h3>
+          <a href="https://wa.me/212600000000" target="_blank" class="btn btn-primary btn-sm" style="justify-content:center">
+            تواصل الآن
+          </a>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">📧</div>
+          <h3 style="font-size:1rem;margin-bottom:0.25rem">البريد الإلكتروني</h3>
+          <a href="mailto:info@digitalagency.ma" style="color:var(--primary-light)">info@digitalagency.ma</a>
+        </div>
+        <div class="card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">📍</div>
+          <h3 style="font-size:1rem;margin-bottom:0.25rem">العنوان</h3>
+          <p style="font-size:0.875rem">مراكش، المغرب</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1rem;margin-bottom:1rem;color:var(--secondary)">⏰ أوقات العمل</h3>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem">
+            <div style="display:flex;justify-content:space-between"><span>الاثنين - الجمعة</span><span style="color:var(--primary-light)">9:00 - 18:00</span></div>
+            <div style="display:flex;justify-content:space-between"><span>السبت</span><span style="color:var(--primary-light)">9:00 - 14:00</span></div>
+            <div style="display:flex;justify-content:space-between"><span>الأحد</span><span style="color:var(--text-muted)">مغلق</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="card">
+        <h2 style="font-size:1.5rem;margin-bottom:2rem">أرسل لنا رسالة</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الاسم *</label>
+            <input type="text" class="form-control" id="contactName" placeholder="اسمك الكامل" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">الهاتف</label>
+            <input type="tel" class="form-control" id="contactPhone" placeholder="+212 6XX XXX XXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">البريد الإلكتروني *</label>
+          <input type="email" class="form-control" id="contactEmail" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">الخدمة المطلوبة</label>
+          <select class="form-control" id="contactService">
+            <option value="">اختر الخدمة</option>
+            <option>تطوير تطبيق موبايل</option>
+            <option>تطوير موقع إلكتروني</option>
+            <option>التسويق الرقمي</option>
+            <option>التصميم الجرافيكي</option>
+            <option>الإعلانات الممولة</option>
+            <option>التصوير بالدرون</option>
+            <option>الهوية البصرية</option>
+            <option>استفسار عام</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الموضوع *</label>
+          <input type="text" class="form-control" id="contactSubject" placeholder="موضوع رسالتك" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">الرسالة *</label>
+          <textarea class="form-control" id="contactMessage" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitContact()" id="contactBtn">
+          📤 إرسال الرسالة
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+<a href="https://wa.me/212600000000" target="_blank" class="whatsapp-btn">💬</a>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script>
+async function submitContact() {
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  if (!name || !email || !subject || message.length < 10) {
+    showToast('الرجاء ملء جميع الحقول المطلوبة', 'error'); return;
+  }
+  const btn = document.getElementById('contactBtn');
+  btn.innerHTML = '<span class="loader"></span> جاري الإرسال...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone: document.getElementById('contactPhone').value, subject, message, serviceType: document.getElementById('contactService').value })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً', 'success');
+      document.querySelectorAll('.form-control').forEach(el => el.value = '');
+    } else { showToast(data.message || 'حدث خطأ', 'error'); }
+  } catch { showToast('حدث خطأ في الإرسال. حاول عبر واتساب', 'error'); }
+  btn.innerHTML = '📤 إرسال الرسالة';
+  btn.disabled = false;
+}
+</script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

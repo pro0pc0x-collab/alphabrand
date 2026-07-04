@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>من نحن - Digital Agency MA</title>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+        .page-loader { display: none !important; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .team-member {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-secondary);
+            transition: all 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-primary);
+        }
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+        .team-member .name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .team-member .role {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-secondary);
+        }
+        .value-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Navbar (نفس الـ navbar من index.html) ===== -->
+<header class="navbar" id="navbar">
+    <nav class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">🚀</div>
+            <div class="nav-logo-text">
+                <span>Digital Agency</span>
+                <span>MOROCCO</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="portfolio.html">أعمالنا</a></li>
+            <li><a href="pricing.html">الأسعار</a></li>
+            <li><a href="about.html" class="active">من نحن</a></li>
+            <li><a href="contact.html">تواصل</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <a href="login.html" class="btn btn-ghost btn-sm">🔐 تسجيل الدخول</a>
+            <a href="request-service.html" class="btn btn-primary btn-sm">اطلب خدمة</a>
+            <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== About Section ===== -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">🇲🇦 من نحن</div>
+            <h1>وكالة رقمية <span class="text-gradient">مغربية</span></h1>
+            <p>نحن فريق من المبدعين والمطورين المغاربة نقدم خدمات رقمية احترافية</p>
+        </div>
+
+        <div class="about-grid">
+            <div>
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">قصة <span class="text-gradient">Digital Agency</span></h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
+                    تأسست Digital Agency في المغرب بهدف تقديم خدمات رقمية احترافية بمستوى عالمي ولمسة مغربية. 
+                    نؤمن بأن التكنولوجيا هي مفتاح المستقبل، ونسعى لمساعدة الشركات والأفراد على تحقيق أهدافهم الرقمية.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                    نقدم خدمات متكاملة تشمل تطوير التطبيقات والمواقع، التسويق الرقمي، التصميم الجرافيكي، 
+                    والتصوير الجوي بالدرون، مع التركيز على الجودة والإبداع والالتزام بالمواعيد.
+                </p>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary">تواصل معنا</a>
+                    <a href="portfolio.html" class="btn btn-ghost">شاهد أعمالنا</a>
+                </div>
+            </div>
+            <div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="card" style="text-align: center; padding: 2rem 1rem;">
+                        <span style="font-size: 3rem;">🏆</span>
+                        <h4 style="margin-top: 0.5rem;">خبرة 5+ سنوات</h4>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 2rem 1rem;">
+                        <span style="font-size: 3rem;">🌍</span>
+                        <h4 style="margin-top: 0.5rem;">عملاء حول العالم</h4>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 2rem 1rem;">
+                        <span style="font-size: 3rem;">💡</span>
+                        <h4 style="margin-top: 0.5rem;">حلول مبتكرة</h4>
+                    </div>
+                    <div class="card" style="text-align: center; padding: 2rem 1rem;">
+                        <span style="font-size: 3rem;">🤝</span>
+                        <h4 style="margin-top: 0.5rem;">شراكة موثوقة</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- القيم -->
+        <div style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">قيمنا <span class="text-gradient">التي نميزنا</span></h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="icon">🎯</div>
+                    <h4>الجودة</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">نعمل بأعلى معايير الجودة في كل مشروع</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon">⚡</div>
+                    <h4>السرعة</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">نلتزم بالمواعيد ونسلم في الوقت المحدد</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon">🛡️</div>
+                    <h4>الثقة</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">نبني علاقات ثقة طويلة الأمد مع عملائنا</p>
+                </div>
+                <div class="value-item">
+                    <div class="icon">💡</div>
+                    <h4>الإبداع</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">نقدم حلولاً إبداعية خارج الصندوق</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- الفريق -->
+        <div style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">فريق <span class="text-gradient">العمل</span></h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">أ</div>
+                    <div class="name">أحمد محمد</div>
+                    <div class="role">المدير التنفيذي</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">س</div>
+                    <div class="name">سارة علي</div>
+                    <div class="role">مديرة التسويق</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">ي</div>
+                    <div class="name">يوسف مراد</div>
+                    <div class="role">مطور رئيسي</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">ف</div>
+                    <div class="name">فاطمة زهرة</div>
+                    <div class="role">مصممة جرافيك</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>© 2024 Digital Agency MA. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

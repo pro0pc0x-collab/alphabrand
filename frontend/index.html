@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Agency MA - وكالة رقمية مغربية احترافية</title>
+    <meta name="description" content="وكالة رقمية مغربية متخصصة في تطوير التطبيقات والمواقع والتسويق الرقمي والتصوير الجوي بالدرون" />
+    <meta name="keywords" content="وكالة رقمية, تطوير تطبيقات, مواقع إلكترونية, تسويق رقمي, المغرب, درون" />
+    <meta name="author" content="Digital Agency MA" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://digitalagency.ma/" />
+    <meta property="og:title" content="Digital Agency MA - وكالة رقمية مغربية احترافية" />
+    <meta property="og:description" content="خدمات رقمية احترافية بمستوى عالمي ولمسة مغربية" />
+    <meta property="og:image" content="https://digitalagency.ma/assets/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://digitalagency.ma/" />
+    <meta property="twitter:title" content="Digital Agency MA - وكالة رقمية مغربية احترافية" />
+    <meta property="twitter:description" content="خدمات رقمية احترافية بمستوى عالمي ولمسة مغربية" />
+    <meta property="twitter:image" content="https://digitalagency.ma/assets/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23006D5B'/><text y='24' x='6' font-size='20'>🚀</text></svg>" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/darkmode.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    
+    <style>
+        /* ========================================
+           تحسينات إضافية للصفحة الرئيسية
+           ======================================== */
+        .page-loader { display: none !important; }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 6rem 0;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(0, 109, 91, 0.15), transparent 60%),
+                radial-gradient(circle at 30% 70%, rgba(0, 184, 148, 0.08), transparent 50%);
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 109, 91, 0.15);
+            border: 1px solid rgba(0, 109, 91, 0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-badge .badge-new {
+            background: var(--accent);
+            color: white;
+            padding: 0.1rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+        }
+        
+        .hero-title .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-secondary);
+        }
+        
+        .hero-stats .stat-item {
+            text-align: center;
+        }
+        
+        .hero-stats .stat-item .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-stats .stat-item .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+        
+        /* ===== Glow Orbs ===== */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        
+        .glow-orb-primary { background: var(--primary-light); }
+        .glow-orb-secondary { background: var(--secondary); }
+        .glow-orb-blue { background: var(--accent-blue); }
+        
+        /* ===== Chatbot ===== */
+        .chatbot-fab {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(0, 109, 91, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-fab:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 40px rgba(0, 109, 91, 0.5);
+        }
+        
+        .chatbot-fab .notification-dot {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+        
+        .chatbot-widget {
+            position: fixed;
+            bottom: 100px;
+            left: 24px;
+            width: 380px;
+            max-width: 92vw;
+            max-height: 520px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-primary);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+        
+        .chatbot-widget.active { display: flex; }
+        
+        .chatbot-header {
+            padding: 16px 20px;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .chatbot-header .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .chatbot-header .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .chatbot-header .chatbot-close:hover { opacity: 1; }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            max-height: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .chatbot-messages .msg {
+            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+        
+        .chatbot-messages .msg.bot {
+            background: var(--bg-secondary);
+            align-self: flex-start;
+            border-bottom-right-radius: 4px;
+            color: var(--text-secondary);
+        }
+        
+        .chatbot-messages .msg.user {
+            background: var(--gradient-primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chatbot-input {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-secondary);
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-secondary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+        
+        .chatbot-input button {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-family);
+        }
+        
+        .chatbot-input button:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        /* ===== WhatsApp ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* ===== Responsive ===== */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; justify-content: center; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .hero-stats .stat-item .stat-number { font-size: 1.8rem; }
+            .chatbot-widget { left: 4vw; width: 92vw; bottom: 90px; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2rem; }
+            .hero-badge { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
+            .hero-stats .stat-item .stat-number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+    MOBILE NAV
+    ======================================== -->
+    <nav class="nav-mobile" id="mobileNav">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
+            <span style="font-size:1.2rem;font-weight:700;">🚀 القائمة</span>
+            <button onclick="closeMobileNav()" style="background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer;">✕</button>
+        </div>
+        <a href="index.html" onclick="closeMobileNav()">🏠 الرئيسية</a>
+        <a href="services.html" onclick="closeMobileNav()">🛠️ الخدمات</a>
+        <a href="portfolio.html" onclick="closeMobileNav()">🎨 أعمالنا</a>
+        <a href="pricing.html" onclick="closeMobileNav()">💰 الأسعار</a>
+        <a href="about.html" onclick="closeMobileNav()">🇲🇦 من نحن</a>
+        <a href="contact.html" onclick="closeMobileNav()">📞 تواصل معنا</a>
+        <hr style="border-color:var(--border-secondary);margin:1rem 0;" />
+        <a href="request-service.html" onclick="closeMobileNav()" class="btn btn-primary" style="justify-content:center;width:100%;">
+            🚀 اطلب خدمة
+        </a>
+        <a href="login.html" onclick="closeMobileNav()" class="btn btn-ghost" style="justify-content:center;width:100%;margin-top:0.5rem;">
+            🔐 تسجيل الدخول
+        </a>
+    </nav>
+
+    <!-- ========================================
+    NAVBAR
+    ======================================== -->
+    <header class="navbar" id="navbar">
+        <nav class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">🚀</div>
+                <div class="nav-logo-text">
+                    <span>Digital Agency</span>
+                    <span>MOROCCO</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="portfolio.html">أعمالنا</a></li>
+                <li><a href="pricing.html">الأسعار</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="contact.html">تواصل</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="تغيير المظهر">
+                    <span class="theme-icon-dark">🌙</span>
+                    <span class="theme-icon-light">☀️</span>
+                </button>
+                <button class="nav-lang-btn" onclick="cycleLang()">AR</button>
+
+                <div class="auth-buttons" id="authButtons">
+                    <a href="login.html" class="btn btn-ghost btn-sm" id="loginBtn">
+                        🔐 تسجيل الدخول
+                    </a>
+                    <a href="dashboard/client/dashboard.html" class="btn btn-ghost btn-sm" id="dashboardBtn" style="display:none;">
+                        👤 لوحة التحكم
+                    </a>
+                    <a href="#" class="btn btn-ghost btn-sm" id="logoutBtn" style="display:none; color: var(--accent);" onclick="logout()">
+                        🚪 خروج
+                    </a>
+                </div>
+
+                <a href="request-service.html" class="btn btn-primary btn-sm">اطلب خدمة</a>
+                <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="القائمة">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========================================
+    HERO SECTION
+    ======================================== -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        
+        <!-- Glow Orbs -->
+        <div class="glow-orb glow-orb-primary" style="width:500px;height:500px;top:10%;right:-10%;animation:float 6s ease-in-out infinite;"></div>
+        <div class="glow-orb glow-orb-secondary" style="width:400px;height:400px;bottom:5%;left:-5%;animation:float 7s ease-in-out infinite 1s;"></div>
+        <div class="glow-orb glow-orb-blue" style="width:300px;height:300px;top:50%;left:30%;animation:float 8s ease-in-out infinite 2s;opacity:0.2;"></div>
+
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+                <div class="hero-badge">
+                    🇲🇦 وكالة رقمية مغربية بمستوى عالمي
+                    <span class="badge-new">جديد</span>
+                </div>
+
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                    نبني مستقبلك <br/>
+                    <span class="text-gradient">الرقمي</span> معك
+                </h1>
+
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    من مراكش للعالم — تطبيقات، مواقع، تسويق رقمي، تصوير بالدرون، وتصميم هوية بصرية احترافية تعكس قيمة علامتك التجارية.
+                </p>
+
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                    <a href="request-service.html" class="btn btn-primary btn-lg">
+                        🚀 ابدأ مشروعك الآن
+                    </a>
+                    <a href="portfolio.html" class="btn btn-ghost btn-lg">
+                        🎯 شاهد أعمالنا
+                    </a>
+                    <a href="https://wa.me/212600000000" target="_blank" class="btn btn-ghost btn-lg" style="color:#25D366;border-color:rgba(37,211,102,0.3);">
+                        💬 واتساب
+                    </a>
+                </div>
+
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="150">0</span><span class="stat-number">+</span>
+                        <div class="stat-label">مشروع منجز</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="80">0</span><span class="stat-number">+</span>
+                        <div class="stat-label">عميل راضٍ</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="5">0</span><span class="stat-number">+</span>
+                        <div class="stat-label">سنوات خبرة</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="98">0</span><span class="stat-number">%</span>
+                        <div class="stat-label">رضا العملاء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>اسحب للأسفل</span>
+            <span class="arrow">↓</span>
+        </div>
+    </section>
+
+    <!-- ========================================
+    SERVICES SECTION
+    ======================================== -->
+    <section class="section" id="services" style="padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">⚡ خدماتنا</div>
+                <h2>كل ما تحتاجه <span class="text-gradient">رقمياً</span></h2>
+                <p>نقدم حلولاً رقمية متكاملة تساعد عملك على النمو والتوسع في العالم الرقمي</p>
+            </div>
+
+            <div class="services-grid" id="servicesGrid" data-aos="fade-up" data-aos-delay="100">
+                <!-- سيتم تحميلها بواسطة JavaScript -->
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;" data-aos="fade-up">
+                <a href="services.html" class="btn btn-outline btn-lg">
+                    عرض جميع الخدمات <span style="margin-right:0.5rem;">←</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    WHY US SECTION
+    ======================================== -->
+    <section class="section" style="background:var(--bg-secondary);padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">💎 لماذا نحن</div>
+                <h2>نميزنا <span class="text-gradient">يميزك</span></h2>
+                <p>نقدم لك أكثر من مجرد خدمات، نقدم لك شراكة استراتيجية لنجاحك</p>
+            </div>
+
+            <div class="feature-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-item">
+                    <div class="icon">🏆</div>
+                    <h4>جودة عالمية</h4>
+                    <p>نعمل بأحدث التقنيات ومعايير الجودة العالمية في كل مشروع</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h4>تسليم سريع</h4>
+                    <p>نلتزم بالمواعيد ونسلم مشاريعنا في الوقت المحدد دون تأخير</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🛡️</div>
+                    <h4>دعم مستمر</h4>
+                    <p>نوفر دعماً تقنياً مستمراً بعد التسليم لضمان استمرارية مشاريعك</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">💰</div>
+                    <h4>أسعار تنافسية</h4>
+                    <p>خدمات احترافية بأسعار مناسبة تناسب جميع الميزانيات</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🎯</div>
+                    <h4>نتائج مضمونة</h4>
+                    <p>نعمل لتحقيق نتائج حقيقية وقابلة للقياس لعملائنا</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🌐</div>
+                    <h4>تغطية واسعة</h4>
+                    <p>نخدم عملاء من المغرب والدول العربية وأوروبا</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    PORTFOLIO PREVIEW
+    ======================================== -->
+    <section class="section" id="portfolio" style="padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">🎨 أعمالنا</div>
+                <h2>مشاريع <span class="text-gradient">نفخر بها</span></h2>
+                <p>نماذج من أعمالنا في مختلف المجالات الرقمية</p>
+            </div>
+
+            <div class="portfolio-grid" id="portfolioPreview" data-aos="fade-up" data-aos-delay="100">
+                <!-- سيتم تحميلها بواسطة JavaScript -->
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;" data-aos="fade-up">
+                <a href="portfolio.html" class="btn btn-outline btn-lg">
+                    عرض جميع الأعمال <span style="margin-right:0.5rem;">←</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    TESTIMONIALS
+    ======================================== -->
+    <section class="section" style="background:var(--bg-secondary);padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">⭐ آراء العملاء</div>
+                <h2>ماذا يقول <span class="text-gradient">عملاؤنا</span></h2>
+                <p>آراء حقيقية من عملائنا عن تجربتهم معنا</p>
+            </div>
+
+            <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"خدمة ممتازة وفريق محترف. ساعدونا في تطوير موقعنا بالشكل المطلوب وفي وقت قياسي."</p>
+                    <div class="author">
+                        <div class="avatar">أ</div>
+                        <div>
+                            <div class="name">أحمد محمد</div>
+                            <div class="role">مدير شركة تسويق</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"التعامل مع Digital Agency كان تجربة رائعة. التصميم الاحترافي والدعم المستمر كانوا مميزين."</p>
+                    <div class="author">
+                        <div class="avatar">س</div>
+                        <div>
+                            <div class="name">سارة علي</div>
+                            <div class="role">مصممة جرافيك</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"أفضل وكالة رقمية تعاملت معها. أنصح بها بشدة لكل من يبحث عن التميز الرقمي."</p>
+                    <div class="author">
+                        <div class="avatar">ي</div>
+                        <div>
+                            <div class="name">يوسف مراد</div>
+                            <div class="role">رائد أعمال</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    DRONE SHOWCASE
+    ======================================== -->
+    <section class="section" style="padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">🚁 الدرون</div>
+                <h2>تصوير جوي <span class="text-gradient">بالدرون</span></h2>
+                <p>نقدم خدمات التصوير الجوي الاحترافي بأحدث الدرونات بدقة 4K</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <h3 style="font-size:1.5rem;margin-bottom:1rem;">لماذا تختار الدرون؟</h3>
+                    <div style="display:flex;flex-direction:column;gap:1rem;">
+                        <div style="display:flex;gap:1rem;align-items:flex-start;">
+                            <span style="font-size:1.5rem;flex-shrink:0;">🎬</span>
+                            <div>
+                                <strong>جودة سينمائية 4K</strong>
+                                <p style="color:var(--text-muted);font-size:0.875rem;margin-top:0.25rem;">لقطات احترافية بدقة عالية تبرز جمال مشروعك</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:1rem;align-items:flex-start;">
+                            <span style="font-size:1.5rem;flex-shrink:0;">🏙️</span>
+                            <div>
+                                <strong>زوايا استثنائية</strong>
+                                <p style="color:var(--text-muted);font-size:0.875rem;margin-top:0.25rem;">مناظر جوية لا يمكن الحصول عليها بأي طريقة أخرى</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:1rem;align-items:flex-start;">
+                            <span style="font-size:1.5rem;flex-shrink:0;">⚡</span>
+                            <div>
+                                <strong>تسليم سريع</strong>
+                                <p style="color:var(--text-muted);font-size:0.875rem;margin-top:0.25rem;">تصوير ومونتاج وتسليم خلال 48 ساعة</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:1rem;align-items:flex-start;">
+                            <span style="font-size:1.5rem;flex-shrink:0;">📍</span>
+                            <div>
+                                <strong>تغطية كاملة للمغرب</strong>
+                                <p style="color:var(--text-muted);font-size:0.875rem;margin-top:0.25rem;">نعمل في جميع مدن المملكة المغربية</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                        <a href="request-service.html?service=drone" class="btn btn-primary">احجز جلسة تصوير</a>
+                        <a href="portfolio.html?filter=drone" class="btn btn-ghost">مشاهدة الأعمال</a>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="card" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:var(--text-muted);">
+                        <span style="font-size:2.5rem;">🏔️</span>
+                        <p>المناظر الطبيعية</p>
+                    </div>
+                    <div class="card" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:var(--text-muted);">
+                        <span style="font-size:2.5rem;">🏗️</span>
+                        <p>المشاريع العقارية</p>
+                    </div>
+                    <div class="card" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:var(--text-muted);">
+                        <span style="font-size:2.5rem;">🏭</span>
+                        <p>المصانع والشركات</p>
+                    </div>
+                    <div class="card" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;color:var(--text-muted);">
+                        <span style="font-size:2.5rem;">🎉</span>
+                        <p>المناسبات والأحداث</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    FAQ SECTION
+    ======================================== -->
+    <section class="section" style="background:var(--bg-secondary);padding:5rem 0;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="badge">❓ الأسئلة الشائعة</div>
+                <h2>أسئلة <span class="text-gradient">يطرحها العملاء</span></h2>
+                <p>أهم الأسئلة التي تهم عملائنا وإجاباتها</p>
+            </div>
+
+            <div class="faq-list" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم تستغرق مدة إنجاز مشروع موقع إلكتروني؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">تتراوح مدة إنجاز الموقع الإلكتروني بين أسبوعين وستة أسابيع حسب تعقيد المشروع ومتطلباته. نبدأ دائماً بتقديم تصور أولي خلال 48 ساعة من استلام المتطلبات.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكنني متابعة تطور مشروعي؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">نعم، نوفر لك لوحة تحكم خاصة يمكنك من خلالها متابعة جميع مراحل مشروعك لحظة بلحظة، وإرسال ملاحظاتك والتواصل مع الفريق مباشرة.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي طرق الدفع المتاحة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">نقبل الدفع عبر التحويل البنكي، الدفع النقدي، PayPal وStripe. نعمل عادةً بدفعة 50% مقدماً و50% عند التسليم.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تقدمون دعماً بعد انتهاء المشروع؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">نعم، نقدم ضماناً مجانياً لمدة 3 أشهر بعد التسليم لإصلاح أي أخطاء تقنية، كما نوفر باقات صيانة شهرية بأسعار تنافسية.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تعملون مع العملاء خارج المغرب؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">بالطبع! نخدم عملاء من المغرب والدول العربية وأوروبا. نتواصل عبر الإنترنت ونستخدم أدوات التعاون الرقمي لضمان تجربة سلسة بغض النظر عن الموقع الجغرافي.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    CTA SECTION
+    ======================================== -->
+    <section class="section" style="padding:5rem 0;">
+        <div class="container">
+            <div class="cta-section" data-aos="fade-up">
+                <div class="cta-content">
+                    <div class="badge" style="display:inline-flex;">🚀 ابدأ اليوم</div>
+                    <h2>جاهز لتطوير <span class="text-gradient">مشروعك؟</span></h2>
+                    <p>تواصل معنا الآن واحصل على استشارة مجانية وعرض سعر في أقل من 24 ساعة</p>
+                    <div class="cta-buttons">
+                        <a href="request-service.html" class="btn btn-primary btn-lg">🚀 اطلب خدمة الآن</a>
+                        <a href="https://wa.me/212600000000" target="_blank" class="btn btn-ghost btn-lg" style="color:#25D366;border-color:rgba(37,211,102,0.3);">
+                            💬 واتساب
+                        </a>
+                        <a href="contact.html" class="btn btn-outline btn-lg">📧 راسلنا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+    FOOTER
+    ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" style="margin-bottom:1rem;">
+                        <div class="nav-logo-icon">🚀</div>
+                        <div class="nav-logo-text">
+                            <span>Digital Agency</span>
+                            <span>MOROCCO</span>
+                        </div>
+                    </div>
+                    <p>وكالة رقمية مغربية متخصصة في تطوير التطبيقات والمواقع والتسويق الرقمي والتصوير الجوي بالدرون بمستوى عالمي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" title="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">الخدمات</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#apps">تطبيقات الهاتف</a></li>
+                        <li><a href="services.html#websites">تطوير المواقع</a></li>
+                        <li><a href="services.html#marketing">التسويق الرقمي</a></li>
+                        <li><a href="services.html#design">التصميم الجرافيكي</a></li>
+                        <li><a href="services.html#drone">الدرون</a></li>
+                        <li><a href="services.html#branding">الهوية البصرية</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">روابط مهمة</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="portfolio.html">أعمالنا</a></li>
+                        <li><a href="pricing.html">الأسعار</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                        <li><a href="request-service.html">اطلب خدمة</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">تواصل معنا</h4>
+                    <div class="footer-contact-item"><span>📞</span><a href="tel:+212600000000">+212 600 000 000</a></div>
+                    <div class="footer-contact-item"><span>📧</span><a href="mailto:info@digitalagency.ma">info@digitalagency.ma</a></div>
+                    <div class="footer-contact-item"><span>📍</span><span>مراكش، المغرب</span></div>
+                    <div class="footer-contact-item"><span>⏰</span><span>الاثنين - السبت: 9:00 - 18:00</span></div>
+                    <a href="https://wa.me/212600000000" target="_blank" class="btn btn-primary btn-sm" style="margin-top:1rem;width:100%;justify-content:center;">
+                        💬 تواصل عبر واتساب
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 Digital Agency MA. جميع الحقوق محفوظة.</p>
+                <div style="display:flex;gap:1rem;">
+                    <a href="#" style="color:var(--text-muted);">سياسة الخصوصية</a>
+                    <a href="#" style="color:var(--text-muted);">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+    CHATBOT
+    ======================================== -->
+    <button class="chatbot-fab" id="chatbotFab" onclick="toggleChatbot()" title="المساعد الذكي">
+        🤖
+        <span class="notification-dot"></span>
+    </button>
+
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-header">
+            <span class="chatbot-title">🤖 المساعد الذكي</span>
+            <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="msg bot">
+                👋 مرحباً! أنا المساعد الذكي لـ <strong>Digital Agency</strong>.<br>
+                كيف يمكنني مساعدتك اليوم؟
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="اكتب رسالتك..." />
+            <button onclick="sendChatMessage()">إرسال</button>
+        </div>
+    </div>
+
+    <!-- ========================================
+    WHATSAPP
+    ======================================== -->
+    <a href="https://wa.me/212600000000" target="_blank" class="whatsapp-btn" title="تواصل عبر واتساب">
+        💬
+    </a>
+
+    <!-- ========================================
+    SCRIPTS
+    ======================================== -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/services.js"></script>
+
+    <script>
+        // ========================================
+        // AOS Animation
+        // ========================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic',
+        });
+
+        // ========================================
+        // المصادقة - تحديث الأزرار
+        // ========================================
+        function updateAuthButtons() {
+            const token = localStorage.getItem('token');
+            const loginBtn = document.getElementById('loginBtn');
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (token) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (dashboardBtn) dashboardBtn.style.display = 'inline-flex';
+                if (logoutBtn) logoutBtn.style.display = 'inline-flex';
+            } else {
+                if (loginBtn) loginBtn.style.display = 'inline-flex';
+                if (dashboardBtn) dashboardBtn.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+            }
+        }
+
+        // ========================================
+        // تسجيل الخروج
+        // ========================================
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('token');
+                updateAuthButtons();
+                showToast('تم تسجيل الخروج بنجاح ✅', 'success');
+                setTimeout(() => window.location.reload(), 500);
+            }
+        }
+
+        // ========================================
+        // إظهار رسائل Toast
+        // ========================================
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            toast.style.cssText = `
+                background: ${type === 'success' ? '#00B894' : type === 'error' ? '#E17055' : '#FDCB6E'};
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                animation: fadeInUp 0.3s ease;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ========================================
+        // تحميل الخدمات
+        // ========================================
+        async function loadServices() {
+            try {
+                const response = await fetch('/api/services');
+                const data = await response.json();
+
+                if (data.success) {
+                    const servicesGrid = document.getElementById('servicesGrid');
+                    if (!servicesGrid) return;
+
+                    const services = data.services.filter(s => s.isActive).slice(0, 6);
+                    servicesGrid.innerHTML = services.map(service => `
+                            <div class="card service-card" data-category="${service.category}">
+                                <div class="service-icon">${service.icon || '🚀'}</div>
+                                <h3 style="margin-bottom:0.5rem;">${service.title?.ar || 'خدمة'}</h3>
+                                <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">${service.description?.ar || ''}</p>
+                                <div style="margin-top:0.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                                    <span class="service-price">${service.basePrice} ${service.currency}</span>
+                                    <span style="color:var(--text-muted);font-size:0.8rem;">${service.duration || ''}</span>
+                                </div>
+                                <a href="request-service.html?service=${service._id}" class="btn btn-primary btn-sm" style="margin-top:1rem;width:100%;justify-content:center;">
+                                    اطلب الخدمة
+                                </a>
+                            </div>
+                        `).join('');
+                }
+            } catch (error) {
+                console.error('❌ خطأ في تحميل الخدمات:', error);
+            }
+        }
+
+        // ========================================
+        // تحميل معرض الأعمال
+        // ========================================
+        function loadPortfolio() {
+            const grid = document.getElementById('portfolioPreview');
+            if (!grid) return;
+
+            const projects = [
+                { icon: '📱', title: 'تطبيق توصيل', category: 'تطبيقات', tags: ['Flutter', 'Firebase'] },
+                { icon: '🌐', title: 'موقع شركة عقارية', category: 'مواقع', tags: ['React', 'Node.js'] },
+                { icon: '🚁', title: 'تصوير درون - سياحي', category: 'درون', tags: ['4K', 'مونتاج'] },
+                { icon: '🎨', title: 'هوية بصرية', category: 'تصميم', tags: ['براندينغ', 'Adobe'] },
+            ];
+
+            grid.innerHTML = projects.map(project => `
+                    <div class="card" style="overflow:hidden;padding:0;">
+                        <div style="background:var(--gradient-primary);height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;">
+                            ${project.icon}
+                        </div>
+                        <div style="padding:1.5rem;">
+                            <h4 style="margin-bottom:0.25rem;">${project.title}</h4>
+                            <p style="color:var(--text-muted);font-size:0.85rem;">${project.category}</p>
+                            <div style="display:flex;gap:0.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+                                ${project.tags.map(tag => `<span style="background:var(--bg-secondary);padding:0.1rem 0.6rem;border-radius:50px;font-size:0.7rem;color:var(--text-muted);border:1px solid var(--border-secondary);">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        // ========================================
+        // CHATBOT
+        // ========================================
+        let isChatOpen = false;
+
+        function toggleChatbot() {
+            const widget = document.getElementById('chatbotWidget');
+            const fab = document.getElementById('chatbotFab');
+            isChatOpen = !isChatOpen;
+            widget.classList.toggle('active', isChatOpen);
+            fab.style.display = isChatOpen ? 'none' : 'flex';
+            if (isChatOpen) {
+                document.getElementById('chatbotInput').focus();
+            }
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('chatbotMessages');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg user';
+            userMsg.textContent = message;
+            messagesContainer.appendChild(userMsg);
+            input.value = '';
+
+            const botMsg = document.createElement('div');
+            botMsg.className = 'msg bot';
+            botMsg.textContent = '⏳ جاري التفكير...';
+            messagesContainer.appendChild(botMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chatbot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                botMsg.textContent = data.reply || '⚠️ عذراً، لم أستطع معالجة رسالتك.';
+            } catch (error) {
+                botMsg.textContent = '❌ عذراً، حدث خطأ في الاتصال بالخادم.';
+            }
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // ========================================
+        // FAQ
+        // ========================================
+        function toggleFaq(element) {
+            const item = element.closest('.faq-item');
+            const isActive = item.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // ========================================
+        // MOBILE NAV
+        // ========================================
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('open');
+        }
+
+        function closeMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.remove('open');
+        }
+
+        // ========================================
+        // LANGUAGE
+        // ========================================
+        let currentLang = 'ar';
+
+        function cycleLang() {
+            const langs = ['ar', 'fr', 'en'];
+            const currentIndex = langs.indexOf(currentLang);
+            const nextIndex = (currentIndex + 1) % langs.length;
+            currentLang = langs[nextIndex];
+            const btn = document.querySelector('.nav-lang-btn');
+            if (btn) btn.textContent = currentLang.toUpperCase();
+            localStorage.setItem('lang', currentLang);
+        }
+
+        // ========================================
+        // THEME
+        // ========================================
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const html = document.documentElement;
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        }
+
+        // استعادة الثيم
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // استعادة اللغة
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang) {
+            currentLang = savedLang;
+            const btn = document.querySelector('.nav-lang-btn');
+            if (btn) btn.textContent = currentLang.toUpperCase();
+        }
+
+        // ========================================
+        // COUNTER ANIMATION
+        // ========================================
+        document.querySelectorAll('.counter').forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const duration = 2000;
+            const step = Math.max(1, Math.floor(target / (duration / 16)));
+            let current = 0;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const interval = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(interval);
+                            }
+                            counter.textContent = current;
+                        }, 16);
+                        observer.disconnect();
+                    }
+                });
+            });
+
+            observer.observe(counter);
+        });
+
+        // ========================================
+        // INIT
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthButtons();
+            loadServices();
+            loadPortfolio();
+
+            // إظهار رسالة ترحيب إذا كان المستخدم مسجلاً
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    showToast(`👋 مرحباً ${payload.name || 'مستخدم'}!`, 'success');
+                } catch (e) {}
+            }
+        });
+
+        // ========================================
+        // إغلاق القائمة الجانبية عند النقر خارجها
+        // ========================================
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('mobileNav');
+            const hamburger = document.getElementById('hamburger');
+            if (nav && nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('open');
+            }
+        });
+
+        // ========================================
+        // إغلاق الشات بوت بـ ESC
+        // ========================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isChatOpen) {
+                toggleChatbot();
+            }
+        });
+
+        console.log('🚀 Digital Agency MA - الصفحة الرئيسية محملة بنجاح!');
+        console.log('📊 النظام: جاهز');
+        console.log('🤖 الشات بوت: جاهز');
+        console.log('🔐 المصادقة: جاهزة');
+    </script>
+
+</body>
+</html>

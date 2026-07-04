@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الإحصائيات - Digital Agency MA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+    <script src="../auth-check.js"></script>
+        /* ===== نفس الـ CSS السابق ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #006D5B;
+            --primary-light: #00B894;
+            --secondary: #FDCB6E;
+            --accent: #E17055;
+            --accent-blue: #0984E3;
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #141414;
+            --bg-card: #1A1A1A;
+            --bg-sidebar: #0D0D0D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B6B6B;
+            --border-primary: rgba(0, 109, 91, 0.3);
+            --border-secondary: rgba(255, 255, 255, 0.06);
+            --gradient-primary: linear-gradient(135deg, #006D5B, #00B894);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 60px rgba(0, 109, 91, 0.15);
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --font-family: 'Cairo', 'Segoe UI', sans-serif;
+            --sidebar-width: 260px;
+        }
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-left: 1px solid var(--border-secondary);
+            padding: var(--space-lg) var(--space-md);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            margin-bottom: var(--space-xl);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-secondary);
+            padding-bottom: var(--space-lg);
+        }
+        .sidebar-logo .icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .sidebar-logo .text {
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-logo .text .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .sidebar-logo .text .sub {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        .sidebar-nav .nav-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: var(--space-md) var(--space-sm) var(--space-xs);
+            font-weight: 600;
+        }
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.7rem var(--space-sm);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .sidebar-nav .nav-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+        .sidebar-nav .nav-item.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-right: 3px solid var(--primary-light);
+        }
+        .sidebar-nav .nav-item .nav-icon {
+            font-size: 1.2rem;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .sidebar-footer {
+            border-top: 1px solid var(--border-secondary);
+            padding-top: var(--space-md);
+            margin-top: auto;
+        }
+        .sidebar-footer .user-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: background 0.25s ease;
+            cursor: pointer;
+        }
+        .sidebar-footer .user-card:hover {
+            background: var(--bg-card);
+        }
+        .sidebar-footer .user-card .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-card .info {
+            flex: 1;
+        }
+        .sidebar-footer .user-card .info .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sidebar-footer .user-card .info .role {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .sidebar-footer .user-card .logout {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            transition: color 0.25s ease;
+            cursor: pointer;
+        }
+        .sidebar-footer .user-card .logout:hover {
+            color: var(--accent);
+        }
+
+        /* ===== Main ===== */
+        .main-content {
+            margin-right: var(--sidebar-width);
+            padding: var(--space-xl);
+            flex: 1;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .page-header .title-section h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .page-header .title-section h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header .title-section p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        .page-header .actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.875rem;
+            font-family: var(--font-family);
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-ghost {
+            background: transparent;
+            border-color: var(--border-secondary);
+        }
+        .btn-ghost:hover {
+            background: var(--bg-card);
+            border-color: var(--primary);
+        }
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        .btn-hamburger {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 0.8rem;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 0 2px 2px 0;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .stat-card .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .stat-card .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .widget {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-secondary);
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .widget:hover {
+            border-color: var(--border-primary);
+        }
+        .widget-header {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .widget-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .widget-body {
+            padding: var(--space-lg);
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            height: 200px;
+            padding: 1rem 0;
+        }
+        .chart-bar .bar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .chart-bar .bar .fill {
+            width: 40px;
+            border-radius: 4px 4px 0 0;
+            background: var(--gradient-primary);
+            transition: height 1s ease;
+            min-height: 5px;
+        }
+        .chart-bar .bar .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .progress-item .label {
+            min-width: 100px;
+            font-size: 0.9rem;
+        }
+        .progress-item .track {
+            flex: 1;
+            background: var(--bg-secondary);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-item .track .fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--gradient-primary);
+            transition: width 1s ease;
+        }
+        .progress-item .value {
+            min-width: 40px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        .animate-in:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .animate-in:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .animate-in:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+        .animate-in:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                width: 280px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-right: 0;
+                padding: var(--space-md);
+            }
+            .btn-hamburger {
+                display: inline-flex;
+            }
+            .page-header .title-section h1 {
+                font-size: 1.4rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="sidebar-logo">
+            <span class="icon">🚀</span>
+            <div class="text">
+                <span class="brand">Digital Agency</span>
+                <span class="sub">MOROCCO</span>
+            </div>
+        </a>
+        <nav class="sidebar-nav">
+            <span class="nav-label">القائمة الرئيسية</span>
+            <a href="dashboard.html" class="nav-item"><span class="nav-icon">📊</span>لوحة التحكم</a>
+            <a href="clients.html" class="nav-item"><span class="nav-icon">👥</span>العملاء</a>
+            <a href="orders.html" class="nav-item"><span class="nav-icon">📦</span>الطلبات</a>
+            <a href="messages.html" class="nav-item"><span class="nav-icon">💬</span>الرسائل</a>
+            <span class="nav-label" style="margin-top:var(--space-md);">التقارير</span>
+            <a href="analytics.html" class="nav-item active"><span class="nav-icon">📈</span>الإحصائيات</a>
+            <a href="settings.html" class="nav-item"><span class="nav-icon">⚙️</span>الإعدادات</a>
+            <span class="nav-label" style="margin-top:var(--space-md);">الموقع</span>
+            <a href="../../frontend/index.html" class="nav-item"><span class="nav-icon">🏠</span>زيارة الموقع</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="avatar">أ</div>
+                <div class="info">
+                    <div class="name">أحمد محمد</div>
+                    <div class="role">مدير النظام</div>
+                </div>
+                <span class="logout" onclick="logout()">🚪</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="title-section">
+                <h1>📈 <span class="highlight">الإحصائيات</span></h1>
+                <p>تحليلات وأداء الموقع</p>
+            </div>
+            <div class="actions">
+                <button class="btn btn-hamburger" onclick="toggleSidebar()">☰</button>
+                <select style="padding:0.5rem 1rem;border-radius:var(--radius-sm);border:1px solid var(--border-secondary);background:var(--bg-card);color:var(--text-primary);font-family:var(--font-family);">
+                    <option>آخر 30 يوم</option>
+                    <option>آخر 90 يوم</option>
+                    <option>آخر سنة</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card animate-in">
+                <div class="stat-number">156</div>
+                <div class="stat-label">📊 إجمالي الزوار</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-number">42</div>
+                <div class="stat-label">👥 عملاء جدد</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-number">28</div>
+                <div class="stat-label">📦 طلبات جديدة</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-number">82%</div>
+                <div class="stat-label">📈 معدل النمو</div>
+            </div>
+        </div>
+
+        <div class="widget animate-in">
+            <div class="widget-header">
+                <h3>📊 الطلبات الشهرية</h3>
+            </div>
+            <div class="widget-body">
+                <div class="chart-bar" id="monthlyChart">
+                    <!-- سيتم تحميلها بواسطة JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="widget animate-in">
+                <div class="widget-header"><h3>📊 توزيع الخدمات</h3></div>
+                <div class="widget-body" id="servicesDistribution">
+                    <!-- سيتم تحميلها بواسطة JS -->
+                </div>
+            </div>
+            <div class="widget animate-in">
+                <div class="widget-header"><h3>📊 حالة الطلبات</h3></div>
+                <div class="widget-body" id="orderStatus">
+                    <!-- سيتم تحميلها بواسطة JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+
+        document.getElementById('sidebarOverlay').addEventListener('click', toggleSidebar);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            }
+        });
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('token');
+                window.location.href = '../../frontend/index.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monthly Chart
+            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'];
+            const data = [12, 19, 15, 22, 28, 18];
+            const max = Math.max(...data);
+
+            const chart = document.getElementById('monthlyChart');
+            chart.innerHTML = months.map((month, i) => {
+                const height = (data[i] / max) * 150;
+                return `
+                        <div class="bar">
+                            <div class="fill" style="height: ${height}px;"></div>
+                            <span class="label">${month}</span>
+                            <span class="label" style="font-weight:600;">${data[i]}</span>
+                        </div>
+                    `;
+            }).join('');
+
+            // Services Distribution
+            const services = [
+                { name: 'تطوير مواقع', count: 12, color: '#006D5B' },
+                { name: 'تطبيقات', count: 8, color: '#00B894' },
+                { name: 'تسويق', count: 6, color: '#0984E3' },
+                { name: 'تصميم', count: 5, color: '#FDCB6E' },
+                { name: 'درون', count: 4, color: '#E17055' },
+            ];
+            const total = services.reduce((sum, s) => sum + s.count, 0);
+
+            const distribution = document.getElementById('servicesDistribution');
+            distribution.innerHTML = services.map(s => `
+                    <div class="progress-item">
+                        <span class="label">${s.name}</span>
+                        <div class="track">
+                            <div class="fill" style="width: ${(s.count / total) * 100}%; background: ${s.color};"></div>
+                        </div>
+                        <span class="value">${s.count}</span>
+                    </div>
+                `).join('');
+
+            // Order Status
+            const status = [
+                { name: 'مكتمل', count: 15, color: '#00B894' },
+                { name: 'قيد التنفيذ', count: 8, color: '#0984E3' },
+                { name: 'قيد الانتظار', count: 5, color: '#FDCB6E' },
+                { name: 'ملغي', count: 2, color: '#E17055' },
+            ];
+            const totalOrders = status.reduce((sum, s) => sum + s.count, 0);
+
+            const statusDiv = document.getElementById('orderStatus');
+            statusDiv.innerHTML = status.map(s => `
+                    <div class="progress-item">
+                        <span class="label">${s.name}</span>
+                        <div class="track">
+                            <div class="fill" style="width: ${(s.count / totalOrders) * 100}%; background: ${s.color};"></div>
+                        </div>
+                        <span class="value">${s.count}</span>
+                    </div>
+                `).join('');
+        });
+    </script>
+
+</body>
+</html>

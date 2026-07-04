@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مشاريعي - العميل</title>
+    <script src="../auth-check.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== نفس الـ CSS السابق ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #006D5B;
+            --primary-light: #00B894;
+            --accent: #E17055;
+            --accent-blue: #0984E3;
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #141414;
+            --bg-card: #1A1A1A;
+            --bg-sidebar: #0D0D0D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B6B6B;
+            --border-primary: rgba(0, 109, 91, 0.3);
+            --border-secondary: rgba(255, 255, 255, 0.06);
+            --gradient-primary: linear-gradient(135deg, #006D5B, #00B894);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 60px rgba(0, 109, 91, 0.15);
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --font-family: 'Cairo', 'Segoe UI', sans-serif;
+            --sidebar-width: 260px;
+        }
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== Sidebar (مختصر) ===== */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-left: 1px solid var(--border-secondary);
+            padding: var(--space-lg) var(--space-md);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            margin-bottom: var(--space-xl);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-secondary);
+            padding-bottom: var(--space-lg);
+        }
+        .sidebar-logo .icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .sidebar-logo .text {
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-logo .text .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .sidebar-logo .text .sub {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        .sidebar-nav .nav-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: var(--space-md) var(--space-sm) var(--space-xs);
+            font-weight: 600;
+        }
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.7rem var(--space-sm);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .sidebar-nav .nav-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+        .sidebar-nav .nav-item.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-right: 3px solid var(--primary-light);
+        }
+        .sidebar-nav .nav-item .nav-icon {
+            font-size: 1.2rem;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .sidebar-footer {
+            border-top: 1px solid var(--border-secondary);
+            padding-top: var(--space-md);
+            margin-top: auto;
+        }
+        .sidebar-footer .user-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: background 0.25s ease;
+            cursor: pointer;
+        }
+        .sidebar-footer .user-card:hover {
+            background: var(--bg-card);
+        }
+        .sidebar-footer .user-card .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-card .info {
+            flex: 1;
+        }
+        .sidebar-footer .user-card .info .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sidebar-footer .user-card .info .role {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .sidebar-footer .user-card .logout {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            transition: color 0.25s ease;
+            cursor: pointer;
+        }
+        .sidebar-footer .user-card .logout:hover {
+            color: var(--accent);
+        }
+
+        /* ===== Main ===== */
+        .main-content {
+            margin-right: var(--sidebar-width);
+            padding: var(--space-xl);
+            flex: 1;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .page-header .title-section h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .page-header .title-section h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header .title-section p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        .page-header .actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.875rem;
+            font-family: var(--font-family);
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+        .btn-primary:hover {
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        .btn-hamburger {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 0.8rem;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-secondary);
+            margin-bottom: var(--space-md);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            border-color: var(--border-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .project-card .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: var(--space-sm);
+        }
+        .project-card .project-header h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .project-card .project-header .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .project-card .project-header .status.in-progress {
+            background: rgba(9, 132, 227, 0.15);
+            color: var(--accent-blue);
+        }
+        .project-card .project-header .status.completed {
+            background: rgba(0, 184, 148, 0.15);
+            color: var(--primary-light);
+        }
+        .project-card .project-header .status.pending {
+            background: rgba(253, 203, 110, 0.15);
+            color: #FDCB6E;
+        }
+        .project-card .progress-track {
+            background: var(--bg-secondary);
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: var(--space-sm);
+        }
+        .project-card .progress-track .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--gradient-primary);
+            transition: width 0.5s ease;
+        }
+        .project-card .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-xs);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .project-card .project-link {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.25s ease;
+        }
+        .project-card .project-link:hover {
+            color: var(--text-primary);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                width: 280px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-right: 0;
+                padding: var(--space-md);
+            }
+            .btn-hamburger {
+                display: inline-flex;
+            }
+            .page-header .title-section h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <a href="dashboard.html" class="sidebar-logo">
+            <span class="icon">🚀</span>
+            <div class="text">
+                <span class="brand">Digital Agency</span>
+                <span class="sub">MOROCCO</span>
+            </div>
+        </a>
+        <nav class="sidebar-nav">
+            <span class="nav-label">القائمة الرئيسية</span>
+            <a href="dashboard.html" class="nav-item"><span class="nav-icon">📊</span>لوحة التحكم</a>
+            <a href="projects.html" class="nav-item active"><span class="nav-icon">📁</span>مشاريعي</a>
+            <a href="invoices.html" class="nav-item"><span class="nav-icon">🧾</span>الفواتير</a>
+            <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span>الملف الشخصي</a>
+            <span class="nav-label" style="margin-top:var(--space-md);">الموقع</span>
+            <a href="../../frontend/index.html" class="nav-item"><span class="nav-icon">🏠</span>زيارة الموقع</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="avatar">أ</div>
+                <div class="info">
+                    <div class="name">أحمد محمد</div>
+                    <div class="role">عميل</div>
+                </div>
+                <span class="logout" onclick="logout()">🚪</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="title-section">
+                <h1>📁 <span class="highlight">مشاريعي</span></h1>
+                <p>عرض جميع مشاريعك وتتبع تقدمها</p>
+            </div>
+            <div class="actions">
+                <button class="btn btn-hamburger" onclick="toggleSidebar()">☰</button>
+                <a href="../../frontend/request-service.html" class="btn btn-primary btn-sm">➕ طلب خدمة جديدة</a>
+            </div>
+        </header>
+
+        <div class="project-card animate-in">
+            <div class="project-header">
+                <div>
+                    <h4>🚀 تطوير موقع شركة</h4>
+                    <span style="color: var(--text-muted); font-size: 0.8rem;">#PRJ-001 | 2024-01-10 | 5,500 MAD</span>
+                </div>
+                <span class="status in-progress">قيد التنفيذ</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+            <div class="progress-info">
+                <span>التقدم: 70%</span>
+                <span>المتبقي: 10 أيام</span>
+            </div>
+            <a href="#" class="project-link">تفاصيل المشروع →</a>
+        </div>
+
+        <div class="project-card animate-in">
+            <div class="project-header">
+                <div>
+                    <h4>📱 تصميم تطبيق جوال</h4>
+                    <span style="color: var(--text-muted); font-size: 0.8rem;">#PRJ-002 | 2024-01-05 | 8,000 MAD</span>
+                </div>
+                <span class="status completed">مكتمل</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 100%; background: #00B894;"></div>
+            </div>
+            <div class="progress-info">
+                <span>التقدم: 100%</span>
+                <span>تم التسليم</span>
+            </div>
+            <a href="#" class="project-link">تفاصيل المشروع →</a>
+        </div>
+
+        <div class="project-card animate-in">
+            <div class="project-header">
+                <div>
+                    <h4>🎨 هوية بصرية جديدة</h4>
+                    <span style="color: var(--text-muted); font-size: 0.8rem;">#PRJ-003 | 2024-01-15 | 2,800 MAD</span>
+                </div>
+                <span class="status pending">قيد الانتظار</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 10%; background: #FDCB6E;"></div>
+            </div>
+            <div class="progress-info">
+                <span>التقدم: 10%</span>
+                <span>المتبقي: 20 يوماً</span>
+            </div>
+            <a href="#" class="project-link">تفاصيل المشروع →</a>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+
+        document.getElementById('sidebarOverlay').addEventListener('click', toggleSidebar);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            }
+        });
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('token');
+                window.location.href = '../../frontend/index.html';
+            }
+        }
+    </script>
+
+</body>
+</html>

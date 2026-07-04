@@ -1,0 +1,97 @@
+:root {
+  /* Brand Colors */
+  --primary: #006D5B;
+  --primary-light: #008a72;
+  --primary-dark: #004d40;
+  --secondary: #C8A44D;
+  --secondary-light: #d4b96a;
+  --accent: #E63946;
+
+  /* Background */
+  --bg-primary: #0B0F14;
+  --bg-secondary: #0f1520;
+  --bg-card: #131A22;
+  --bg-card-hover: #1a2332;
+  --bg-glass: rgba(19, 26, 34, 0.7);
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8C1CC;
+  --text-muted: #6b7a8d;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-primary: rgba(0, 109, 91, 0.4);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-light));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-light), var(--secondary));
+  --gradient-hero: linear-gradient(135deg, #0B0F14 0%, #0f1a14 50%, #0B0F14 100%);
+  --gradient-card: linear-gradient(135deg, rgba(0,109,91,0.1), rgba(200,164,77,0.05));
+  --gradient-glow: radial-gradient(ellipse at center, rgba(0,109,91,0.15) 0%, transparent 70%);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --shadow-primary: 0 10px 30px rgba(0, 109, 91, 0.3);
+  --shadow-secondary: 0 10px 30px rgba(200, 164, 77, 0.2);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Typography */
+  --font-ar: 'Tajawal', sans-serif;
+  --font-en: 'Poppins', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-chatbot: 600;
+}
+
+/* Zellige Pattern Variables */
+:root {
+  --zellige-size: 60px;
+  --zellige-color: rgba(0, 109, 91, 0.04);
+  --zellige-stroke: rgba(200, 164, 77, 0.06);
+}

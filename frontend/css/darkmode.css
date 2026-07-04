@@ -1,0 +1,33 @@
+/* Dark Mode is default. Light mode overrides: */
+[data-theme="light"] {
+  --bg-primary: #F5F7FA;
+  --bg-secondary: #EAEEF3;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F0F4F8;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --border: rgba(0, 0, 0, 0.08);
+  --text-primary: #0B0F14;
+  --text-secondary: #4A5568;
+  --text-muted: #A0AEC0;
+  --gradient-hero: linear-gradient(135deg, #F5F7FA 0%, #EBF5F3 50%, #F5F7FA 100%);
+  --zellige-color: rgba(0, 109, 91, 0.06);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  width: 38px; height: 38px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.1rem;
+  transition: var(--transition-base);
+}
+.theme-toggle:hover { color: var(--text-primary); border-color: var(--border-primary); }
+
+[data-theme="light"] .theme-icon-dark { display: none; }
+[data-theme="dark"] .theme-icon-light { display: none; }

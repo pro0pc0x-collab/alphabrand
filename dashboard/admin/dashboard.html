@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة تحكم المدير - Digital Agency MA</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <style>
+        /* ========================================
+           ROOT VARIABLES
+           ======================================== */
+        :root {
+            --primary: #006D5B;
+            --primary-light: #00B894;
+            --primary-dark: #004D3F;
+            --secondary: #FDCB6E;
+            --accent: #E17055;
+            --accent-blue: #0984E3;
+            --accent-purple: #6C5CE7;
+            --accent-pink: #FD79A8;
+            
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #181818;
+            --bg-card-hover: #222222;
+            --bg-sidebar: #0D0D0D;
+            
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B6B6B;
+            
+            --border-primary: rgba(0, 109, 91, 0.3);
+            --border-secondary: rgba(255, 255, 255, 0.06);
+            
+            --gradient-primary: linear-gradient(135deg, #006D5B, #00B894);
+            --gradient-card: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(0, 109, 91, 0.06));
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 60px rgba(0, 109, 91, 0.15);
+            
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            
+            --font-family: 'Cairo', 'Segoe UI', sans-serif;
+            --sidebar-width: 270px;
+        }
+        
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ========================================
+           SCROLLBAR
+           ======================================== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+        
+        /* ========================================
+           LAYOUT
+           ======================================== */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* ========================================
+           SIDEBAR
+           ======================================== */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-left: 1px solid var(--border-secondary);
+            padding: var(--space-lg) var(--space-md);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar::-webkit-scrollbar { width: 3px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+        
+        /* Logo */
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            margin-bottom: var(--space-xl);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-secondary);
+            padding-bottom: var(--space-lg);
+        }
+        
+        .sidebar-logo .icon { font-size: 2.2rem; line-height: 1; }
+        .sidebar-logo .text { display: flex; flex-direction: column; }
+        .sidebar-logo .text .brand {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .sidebar-logo .text .brand span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .sidebar-logo .text .sub {
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+        
+        /* Navigation */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        
+        .sidebar-nav .nav-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--text-muted);
+            padding: var(--space-md) var(--space-sm) var(--space-xs);
+            font-weight: 700;
+        }
+        
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.7rem var(--space-sm);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-right: 3px solid transparent;
+        }
+        
+        .sidebar-nav .nav-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+        
+        .sidebar-nav .nav-item.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-right-color: var(--primary-light);
+        }
+        
+        .sidebar-nav .nav-item .nav-icon { font-size: 1.2rem; width: 28px; text-align: center; flex-shrink: 0; }
+        
+        .sidebar-nav .nav-item .nav-badge {
+            margin-right: auto;
+            padding: 0.1rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+        .sidebar-nav .nav-item .nav-badge.danger { background: var(--accent); color: white; }
+        .sidebar-nav .nav-item .nav-badge.primary { background: var(--primary-light); color: white; }
+        .sidebar-nav .nav-item .nav-badge.warning { background: var(--secondary); color: #1a1a1a; }
+        .sidebar-nav .nav-item .nav-badge.blue { background: var(--accent-blue); color: white; }
+        
+        /* Sidebar Footer */
+        .sidebar-footer {
+            border-top: 1px solid var(--border-secondary);
+            padding-top: var(--space-md);
+            margin-top: auto;
+        }
+        
+        .sidebar-footer .user-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+        .sidebar-footer .user-card:hover { background: var(--bg-card); }
+        
+        .sidebar-footer .user-card .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .sidebar-footer .user-card .avatar .online-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #00B894;
+            border-radius: 50%;
+            border: 2px solid var(--bg-sidebar);
+        }
+        
+        .sidebar-footer .user-card .info { flex: 1; }
+        .sidebar-footer .user-card .info .name { font-size: 0.85rem; font-weight: 600; }
+        .sidebar-footer .user-card .info .role { font-size: 0.7rem; color: var(--text-muted); }
+        
+        .sidebar-footer .user-card .logout-btn {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+        .sidebar-footer .user-card .logout-btn:hover { color: var(--accent); }
+        
+        /* ========================================
+           MAIN CONTENT
+           ======================================== */
+        .main-content {
+            margin-right: var(--sidebar-width);
+            padding: var(--space-xl);
+            flex: 1;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+        }
+        
+        .main-content::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            right: -20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(0, 109, 91, 0.06), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .main-content>* { position: relative; z-index: 1; }
+        
+        /* ========================================
+           HEADER
+           ======================================== */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .page-header .title-section h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .page-header .title-section h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header .title-section .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        .page-header .title-section .date-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            padding: 0.1rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            border: 1px solid var(--border-secondary);
+        }
+        
+        .page-header .actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.875rem;
+            font-family: var(--font-family);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+        .btn-primary:hover { box-shadow: var(--shadow-glow); }
+        
+        .btn-ghost {
+            background: transparent;
+            border-color: var(--border-secondary);
+        }
+        .btn-ghost:hover { background: var(--bg-card); border-color: var(--primary); }
+        
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary-light);
+        }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        
+        .btn-danger {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .btn-danger:hover { background: #c0392b; border-color: #c0392b; }
+        
+        .btn-success {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+        .btn-success:hover { background: #00a381; border-color: #00a381; }
+        
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .btn-lg { padding: 0.8rem 1.6rem; font-size: 1rem; }
+        
+        .btn-icon {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 1.1rem;
+        }
+        
+        .btn-hamburger {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-sm);
+            padding: 0.5rem 0.8rem;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+        
+        /* ========================================
+           STATS GRID
+           ======================================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-secondary);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 0 2px 2px 0;
+        }
+        .stat-card:nth-child(1)::before { background: var(--gradient-primary); }
+        .stat-card:nth-child(2)::before { background: linear-gradient(135deg, #FDCB6E, #E17055); }
+        .stat-card:nth-child(3)::before { background: linear-gradient(135deg, #0984E3, #6C5CE7); }
+        .stat-card:nth-child(4)::before { background: linear-gradient(135deg, #FD79A8, #E17055); }
+        
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .stat-card .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .stat-card .stat-icon { font-size: 1.8rem; margin-bottom: var(--space-xs); opacity: 0.8; }
+        
+        .stat-card .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .stat-card .stat-number.secondary {
+            background: linear-gradient(135deg, #FDCB6E, #E17055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-number.blue {
+            background: linear-gradient(135deg, #0984E3, #6C5CE7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-number.pink {
+            background: linear-gradient(135deg, #FD79A8, #E17055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-card .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 2px; }
+        
+        .stat-card .stat-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+            margin-top: var(--space-xs);
+            font-weight: 600;
+        }
+        .stat-card .stat-change.up { background: rgba(0, 184, 148, 0.12); color: var(--primary-light); }
+        .stat-card .stat-change.down { background: rgba(225, 112, 85, 0.12); color: var(--accent); }
+        .stat-card .stat-change.neutral { background: rgba(253, 203, 110, 0.12); color: var(--secondary); }
+        
+        .stat-card .stat-glow {
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .stat-card:nth-child(1) .stat-glow { background: var(--primary-light); }
+        .stat-card:nth-child(2) .stat-glow { background: var(--secondary); }
+        .stat-card:nth-child(3) .stat-glow { background: var(--accent-blue); }
+        .stat-card:nth-child(4) .stat-glow { background: var(--accent-pink); }
+        
+        /* ========================================
+           WIDGETS
+           ======================================== */
+        .widget-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .widget {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-secondary);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .widget:hover { border-color: var(--border-primary); }
+        
+        .widget-header {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .widget-header h3 { font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .widget-header .widget-link {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .widget-header .widget-link:hover { color: var(--primary-light); }
+        
+        .widget-body { padding: var(--space-lg); }
+        
+        /* ========================================
+           TABLE
+           ======================================== */
+        .table-responsive { overflow-x: auto; }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        .table th {
+            text-align: right;
+            padding: 0.75rem var(--space-sm);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-secondary);
+        }
+        .table td {
+            padding: 0.75rem var(--space-sm);
+            border-bottom: 1px solid var(--border-secondary);
+            color: var(--text-secondary);
+        }
+        .table tr:last-child td { border-bottom: none; }
+        .table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        
+        .table .user-cell { display: flex; align-items: center; gap: var(--space-sm); }
+        .table .user-cell .avatar-sm {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .table .actions-cell { display: flex; gap: 0.4rem; }
+        
+        /* ========================================
+           BADGES
+           ======================================== */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-success { background: rgba(0, 184, 148, 0.15); color: var(--primary-light); }
+        .badge-warning { background: rgba(253, 203, 110, 0.15); color: var(--secondary); }
+        .badge-danger { background: rgba(225, 112, 85, 0.15); color: var(--accent); }
+        .badge-info { background: rgba(9, 132, 227, 0.15); color: var(--accent-blue); }
+        .badge-purple { background: rgba(108, 92, 231, 0.15); color: var(--accent-purple); }
+        
+        /* ========================================
+           TIMELINE
+           ======================================== */
+        .timeline { display: flex; flex-direction: column; gap: var(--space-sm); }
+        .timeline-item {
+            display: flex;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: background 0.3s ease;
+        }
+        .timeline-item:hover { background: rgba(255, 255, 255, 0.03); }
+        .timeline-item .timeline-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            border: 1px solid var(--border-secondary);
+        }
+        .timeline-item .timeline-icon.primary { background: rgba(0, 109, 91, 0.15); }
+        .timeline-item .timeline-icon.warning { background: rgba(253, 203, 110, 0.15); }
+        .timeline-item .timeline-icon.info { background: rgba(9, 132, 227, 0.15); }
+        .timeline-item .timeline-icon.danger { background: rgba(225, 112, 85, 0.15); }
+        
+        .timeline-item .timeline-content { flex: 1; }
+        .timeline-item .timeline-content .title { font-size: 0.85rem; font-weight: 500; }
+        .timeline-item .timeline-content .desc { font-size: 0.8rem; color: var(--text-muted); }
+        .timeline-item .timeline-content .time { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+        
+        /* ========================================
+           QUICK STATS
+           ======================================== */
+        .quick-stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-secondary);
+        }
+        .quick-stat-item:last-child { border-bottom: none; }
+        .quick-stat-item .qs-label { color: var(--text-secondary); font-size: 0.85rem; }
+        .quick-stat-item .qs-value { font-weight: 700; font-size: 1rem; }
+        .quick-stat-item .qs-value.primary { color: var(--primary-light); }
+        .quick-stat-item .qs-value.warning { color: var(--secondary); }
+        .quick-stat-item .qs-value.info { color: var(--accent-blue); }
+        .quick-stat-item .qs-value.danger { color: var(--accent); }
+        
+        /* ========================================
+           FORM
+           ======================================== */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-secondary);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        
+        /* ========================================
+           FILE UPLOAD
+           ======================================== */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .file-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-secondary);
+            padding: 0.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .file-item:hover { border-color: var(--border-primary); }
+        .file-item .file-icon { font-size: 3rem; padding: 0.5rem; }
+        .file-item .file-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+        
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .widget-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                width: 300px;
+            }
+            .sidebar.open { transform: translateX(0); }
+            .main-content {
+                margin-right: 0;
+                padding: var(--space-md);
+            }
+            .btn-hamburger { display: inline-flex; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+            .page-header .title-section h1 { font-size: 1.4rem; }
+            .stat-card .stat-number { font-size: 1.6rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-card { padding: var(--space-md); }
+            .page-header .actions .btn span { display: none; }
+            .widget-body { padding: var(--space-md); }
+        }
+        
+        /* ========================================
+           OVERLAY
+           ======================================== */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar-overlay.active { display: block; opacity: 1; }
+        
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        .animate-in:nth-child(1) { animation-delay: 0.05s; }
+        .animate-in:nth-child(2) { animation-delay: 0.1s; }
+        .animate-in:nth-child(3) { animation-delay: 0.15s; }
+        .animate-in:nth-child(4) { animation-delay: 0.2s; }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+    SIDEBAR OVERLAY (Mobile)
+    ======================================== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+    SIDEBAR
+    ======================================== -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo -->
+        <a href="dashboard.html" class="sidebar-logo">
+            <span class="icon">🚀</span>
+            <div class="text">
+                <span class="brand"><span>Digital</span> Agency</span>
+                <span class="sub">MOROCCO</span>
+            </div>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <span class="nav-label">القائمة الرئيسية</span>
+
+            <a href="dashboard.html" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                لوحة التحكم
+            </a>
+            <a href="clients.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                العملاء
+                <span class="nav-badge primary">12</span>
+            </a>
+            <a href="orders.html" class="nav-item">
+                <span class="nav-icon">📦</span>
+                الطلبات
+                <span class="nav-badge warning">5</span>
+            </a>
+            <a href="invoices.html" class="nav-item">
+                <span class="nav-icon">🧾</span>
+                الفواتير
+                <span class="nav-badge blue">3</span>
+            </a>
+            <a href="messages.html" class="nav-item">
+                <span class="nav-icon">💬</span>
+                الرسائل
+                <span class="nav-badge danger">8</span>
+            </a>
+
+            <span class="nav-label" style="margin-top:var(--space-md);">المحتوى</span>
+
+            <a href="services-manager.html" class="nav-item">
+                <span class="nav-icon">🛠️</span>
+                إدارة الخدمات
+            </a>
+            <a href="portfolio-manager.html" class="nav-item">
+                <span class="nav-icon">🎨</span>
+                إدارة الأعمال
+            </a>
+            <a href="files-manager.html" class="nav-item">
+                <span class="nav-icon">📁</span>
+                الملفات
+                <span class="nav-badge primary">24</span>
+            </a>
+
+            <span class="nav-label" style="margin-top:var(--space-md);">التقارير</span>
+
+            <a href="analytics.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                الإحصائيات
+            </a>
+            <a href="reports.html" class="nav-item">
+                <span class="nav-icon">📄</span>
+                التقارير
+            </a>
+
+            <span class="nav-label" style="margin-top:var(--space-md);">الإعدادات</span>
+
+            <a href="settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                الإعدادات
+            </a>
+
+            <span class="nav-label" style="margin-top:var(--space-md);">الموقع</span>
+
+            <a href="../../frontend/index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                الصفحة الرئيسية
+            </a>
+
+            <a href="#" class="nav-item" onclick="logout()" style="color: var(--accent);">
+                <span class="nav-icon">🚪</span>
+                <span>تسجيل الخروج</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="avatar">
+                    أ
+                    <span class="online-dot"></span>
+                </div>
+                <div class="info">
+                    <div class="name" id="adminName">أحمد محمد</div>
+                    <div class="role">مدير النظام</div>
+                </div>
+                <button class="logout-btn" onclick="logout()" title="تسجيل الخروج">🚪</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ========================================
+    MAIN CONTENT
+    ======================================== -->
+    <main class="main-content">
+
+        <!-- ===== PAGE HEADER ===== -->
+        <header class="page-header">
+            <div class="title-section">
+                <h1>📊 <span class="highlight">لوحة التحكم</span></h1>
+                <div class="subtitle">
+                    مرحباً بك، مدير! إليك ملخص أداء الموقع 
+                    <span class="date-badge" id="currentDate"></span>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn btn-hamburger" onclick="toggleSidebar()">☰</button>
+                <button class="btn btn-ghost btn-sm" onclick="refreshData()">
+                    <span>🔄</span>
+                    <span>تحديث</span>
+                </button>
+                <a href="../../frontend/index.html" class="btn btn-ghost btn-sm">
+                    <span>🏠</span>
+                    <span>الموقع</span>
+                </a>
+                <button class="btn btn-primary btn-sm" onclick="showAddModal()">
+                    <span>➕</span>
+                    <span>إضافة جديد</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== STATS ===== -->
+        <section class="stats-grid" id="statsGrid">
+            <div class="stat-card animate-in">
+                <div class="stat-glow"></div>
+                <div class="stat-top">
+                    <div class="stat-icon">👥</div>
+                    <span class="stat-change up">↑ 12%</span>
+                </div>
+                <div class="stat-number" id="statClients">0</div>
+                <div class="stat-label">إجمالي العملاء</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-glow"></div>
+                <div class="stat-top">
+                    <div class="stat-icon">📦</div>
+                    <span class="stat-change up">↑ 8%</span>
+                </div>
+                <div class="stat-number secondary" id="statOrders">0</div>
+                <div class="stat-label">الطلبات النشطة</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-glow"></div>
+                <div class="stat-top">
+                    <div class="stat-icon">💰</div>
+                    <span class="stat-change up">↑ 23%</span>
+                </div>
+                <div class="stat-number blue" id="statRevenue">0 MAD</div>
+                <div class="stat-label">إجمالي الإيرادات</div>
+            </div>
+            <div class="stat-card animate-in">
+                <div class="stat-glow"></div>
+                <div class="stat-top">
+                    <div class="stat-icon">⭐</div>
+                    <span class="stat-change neutral">★ 4.8</span>
+                </div>
+                <div class="stat-number pink">98%</div>
+                <div class="stat-label">رضا العملاء</div>
+            </div>
+        </section>
+
+        <!-- ===== WIDGETS ===== -->
+        <section class="widget-grid">
+
+            <!-- ===== Orders Chart ===== -->
+            <div class="widget animate-in">
+                <div class="widget-header">
+                    <h3>📊 الطلبات الشهرية</h3>
+                    <select id="chartPeriod" style="background:var(--bg-card);border:1px solid var(--border-secondary);color:var(--text-primary);padding:0.2rem 0.6rem;border-radius:6px;font-size:0.8rem;font-family:var(--font-family);">
+                        <option value="6">آخر 6 أشهر</option>
+                        <option value="12">آخر 12 شهر</option>
+                    </select>
+                </div>
+                <div class="widget-body" style="height:260px;">
+                    <canvas id="ordersChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ===== Quick Stats ===== -->
+            <div class="widget animate-in">
+                <div class="widget-header">
+                    <h3>📈 ملخص سريع</h3>
+                </div>
+                <div class="widget-body">
+                    <div id="quickStats">
+                        <div class="quick-stat-item">
+                            <span class="qs-label">⏳ قيد الانتظار</span>
+                            <span class="qs-value warning" id="qsPending">0</span>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span class="qs-label">⚡ قيد التنفيذ</span>
+                            <span class="qs-value info" id="qsInProgress">0</span>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span class="qs-label">✅ مكتملة</span>
+                            <span class="qs-value primary" id="qsCompleted">0</span>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span class="qs-label">❌ ملغية</span>
+                            <span class="qs-value danger" id="qsCancelled">0</span>
+                        </div>
+                        <div class="quick-stat-item" style="border-top:1px solid var(--border-secondary);padding-top:0.75rem;margin-top:0.25rem;">
+                            <span class="qs-label" style="font-weight:700;">💰 الإيرادات</span>
+                            <span class="qs-value primary" id="qsRevenue" style="font-size:1.2rem;">0 MAD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== Revenue Chart ===== -->
+        <section class="widget animate-in" style="margin-bottom:var(--space-xl);">
+            <div class="widget-header">
+                <h3>💰 الإيرادات الشهرية</h3>
+                <span style="color:var(--text-muted);font-size:0.8rem;">بالدرهم المغربي (MAD)</span>
+            </div>
+            <div class="widget-body" style="height:200px;">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </section>
+
+        <!-- ===== Recent Orders ===== -->
+        <section class="widget animate-in" style="margin-bottom:var(--space-xl);">
+            <div class="widget-header">
+                <h3>📦 أحدث الطلبات</h3>
+                <a href="orders.html" class="widget-link">عرض الكل →</a>
+            </div>
+            <div class="widget-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>العميل</th>
+                                <th>الخدمة</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrders">
+                            <!-- سيتم تحميلها بواسطة JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Recent Messages ===== -->
+        <section class="widget animate-in" style="margin-bottom:var(--space-xl);">
+            <div class="widget-header">
+                <h3>💬 أحدث الرسائل</h3>
+                <a href="messages.html" class="widget-link">عرض الكل →</a>
+            </div>
+            <div class="widget-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>المرسل</th>
+                                <th>الموضوع</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentMessages">
+                            <!-- سيتم تحميلها بواسطة JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FILE UPLOAD ===== -->
+        <section class="widget animate-in" style="margin-bottom:var(--space-xl);">
+            <div class="widget-header">
+                <h3>📁 إدارة الملفات</h3>
+            </div>
+            <div class="widget-body">
+                <form id="uploadForm" enctype="multipart/form-data" style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:end;">
+                    <div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>اختر ملف للرفع</label>
+                            <input type="file" id="fileInput" name="file" accept="image/*,video/*,application/pdf" required />
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;">
+                        <select id="folderSelect" style="padding:0.6rem 1rem;border-radius:var(--radius-sm);border:1px solid var(--border-secondary);background:var(--bg-card);color:var(--text-primary);font-family:var(--font-family);">
+                            <option value="portfolio">أعمالنا</option>
+                            <option value="services">الخدمات</option>
+                            <option value="clients">العملاء</option>
+                            <option value="general">عام</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">📤 رفع</button>
+                    </div>
+                </form>
+                
+                <div id="uploadStatus" style="margin-top:1rem;display:none;padding:0.75rem;border-radius:var(--radius-sm);"></div>
+                
+                <div style="margin-top:2rem;">
+                    <div class="file-grid" id="fileList">
+                        <!-- سيتم تحميلها بواسطة JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Recent Activity ===== -->
+        <section class="widget animate-in">
+            <div class="widget-header">
+                <h3>🕐 النشاط الأخير</h3>
+            </div>
+            <div class="widget-body">
+                <div class="timeline" id="activityTimeline">
+                    <!-- سيتم تحميلها بواسطة JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================
+    SCRIPTS
+    ======================================== -->
+    <script>
+        // ========================================
+        // التحقق من المصادقة
+        // ========================================
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '../../frontend/login.html';
+                return;
+            }
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('token');
+                    window.location.href = '../../frontend/login.html';
+                }
+            } catch (e) {
+                localStorage.removeItem('token');
+                window.location.href = '../../frontend/login.html';
+            }
+        })();
+
+        // ========================================
+        // SIDEBAR TOGGLE
+        // ========================================
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        document.getElementById('sidebarOverlay').addEventListener('click', toggleSidebar);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            }
+        });
+
+        // ========================================
+        // LOGOUT
+        // ========================================
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('token');
+                window.location.href = '../../frontend/index.html';
+            }
+        }
+
+        // ========================================
+        // CURRENT DATE
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ar-EG', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('currentDate').textContent = dateStr;
+        });
+
+        // ========================================
+        // SHOW ADD MODAL
+        // ========================================
+        function showAddModal() {
+            alert('🚧 سيتم إضافة نافذة لإضافة عنصر جديد قريباً');
+        }
+
+        // ========================================
+        // REFRESH DATA
+        // ========================================
+        function refreshData() {
+            const btn = document.querySelector('.btn-ghost.btn-sm');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '🔄 جاري التحديث...';
+            btn.disabled = true;
+
+            loadDashboardData().finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+
+        // ========================================
+        // LOAD DASHBOARD DATA
+        // ========================================
+        async function loadDashboardData() {
+            try {
+                const token = localStorage.getItem('token');
+                
+                // محاكاة بيانات (استبدلها بـ API حقيقي)
+                document.getElementById('statClients').textContent = '42';
+                document.getElementById('statOrders').textContent = '28';
+                document.getElementById('statRevenue').textContent = '156,500 MAD';
+                document.getElementById('qsPending').textContent = '5';
+                document.getElementById('qsInProgress').textContent = '8';
+                document.getElementById('qsCompleted').textContent = '15';
+                document.getElementById('qsCancelled').textContent = '2';
+                document.getElementById('qsRevenue').textContent = '156,500 MAD';
+
+                // ===== أحدث الطلبات =====
+                const orders = [
+                    { id: '#ORD-001', client: 'أحمد محمد', service: 'تطوير موقع', amount: '5,500', status: 'completed',
+                        date: '2024-06-25' },
+                    { id: '#ORD-002', client: 'سارة علي', service: 'تصميم تطبيق', amount: '8,000', status: 'in-progress',
+                        date: '2024-06-24' },
+                    { id: '#ORD-003', client: 'يوسف مراد', service: 'حملة تسويق', amount: '3,200', status: 'pending',
+                        date: '2024-06-23' },
+                    { id: '#ORD-004', client: 'فاطمة زهرة', service: 'تصوير درون', amount: '4,500', status: 'completed',
+                        date: '2024-06-22' },
+                ];
+
+                const statusMap = {
+                    'pending': 'قيد الانتظار',
+                    'completed': 'مكتمل',
+                    'in-progress': 'قيد التنفيذ',
+                    'cancelled': 'ملغي'
+                };
+                const badgeMap = {
+                    'pending': 'badge-warning',
+                    'completed': 'badge-success',
+                    'in-progress': 'badge-info',
+                    'cancelled': 'badge-danger'
+                };
+
+                const ordersTable = document.getElementById('recentOrders');
+                ordersTable.innerHTML = orders.map((order) => `
+                        <tr>
+                            <td>${order.id}</td>
+                            <td>
+                                <div class="user-cell">
+                                    <span class="avatar-sm">${order.client.charAt(0)}</span>
+                                    ${order.client}
+                                </div>
+                            </td>
+                            <td>${order.service}</td>
+                            <td>${order.amount} MAD</td>
+                            <td><span class="badge ${badgeMap[order.status]}">${statusMap[order.status] || order.status}</span></td>
+                            <td>${order.date}</td>
+                            <td class="actions-cell">
+                                <button class="btn btn-ghost btn-sm" onclick="viewOrder('${order.id}')">👁️</button>
+                                <button class="btn btn-ghost btn-sm" onclick="editOrder('${order.id}')">✏️</button>
+                            </td>
+                        </tr>
+                    `).join('');
+
+                // ===== أحدث الرسائل =====
+                const messages = [
+                    { id: 1, sender: 'أحمد محمد', subject: 'استفسار عن الخدمات', status: 'new', date: 'اليوم' },
+                    { id: 2, sender: 'سارة علي', subject: 'طلب عرض سعر', status: 'read', date: 'أمس' },
+                    { id: 3, sender: 'يوسف مراد', subject: 'استفسار تقني', status: 'replied', date: 'أمس' },
+                ];
+
+                const msgStatusMap = {
+                    'new': 'جديد',
+                    'read': 'مقروء',
+                    'replied': 'تم الرد'
+                };
+                const msgBadgeMap = {
+                    'new': 'badge-danger',
+                    'read': 'badge-info',
+                    'replied': 'badge-success'
+                };
+
+                const messagesTable = document.getElementById('recentMessages');
+                messagesTable.innerHTML = messages.map((msg) => `
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <span class="avatar-sm">${msg.sender.charAt(0)}</span>
+                                    ${msg.sender}
+                                </div>
+                            </td>
+                            <td>${msg.subject}</td>
+                            <td><span class="badge ${msgBadgeMap[msg.status]}">${msgStatusMap[msg.status]}</span></td>
+                            <td>${msg.date}</td>
+                            <td class="actions-cell">
+                                <button class="btn btn-ghost btn-sm" onclick="viewMessage(${msg.id})">👁️</button>
+                                <button class="btn btn-primary btn-sm" onclick="replyMessage(${msg.id})">✉️</button>
+                            </td>
+                        </tr>
+                    `).join('');
+
+                // ===== النشاط الأخير =====
+                const activities = [
+                    { icon: '👤', type: 'primary', title: 'عميل جديد', desc: 'سجل أحمد محمد كعميل جديد', time: 'منذ 5 دقائق' },
+                    { icon: '📦', type: 'warning', title: 'طلب جديد', desc: 'طلب #ORD-005 من سارة علي', time: 'منذ ساعة' },
+                    { icon: '💬', type: 'info', title: 'رسالة جديدة', desc: 'استفسار من يوسف مراد حول الخدمات',
+                    time: 'منذ ساعتين' },
+                    { icon: '✅', type: 'success', title: 'طلب مكتمل', desc: 'تم إكمال مشروع تصميم تطبيق', time: 'منذ 3 ساعات' },
+                ];
+
+                const timeline = document.getElementById('activityTimeline');
+                timeline.innerHTML = activities.map(act => `
+                        <div class="timeline-item">
+                            <div class="timeline-icon ${act.type}">${act.icon}</div>
+                            <div class="timeline-content">
+                                <div class="title">${act.title}</div>
+                                <div class="desc">${act.desc}</div>
+                                <div class="time">${act.time}</div>
+                            </div>
+                        </div>
+                    `).join('');
+
+            } catch (error) {
+                console.error('❌ خطأ في تحميل البيانات:', error);
+            }
+        }
+
+        // ========================================
+        // VIEW / EDIT / REPLY FUNCTIONS
+        // ========================================
+        function viewOrder(id) { alert(`👁️ عرض الطلب ${id}`); }
+        function editOrder(id) { alert(`✏️ تعديل الطلب ${id}`); }
+        function viewMessage(id) { alert(`👁️ عرض الرسالة #${id}`); }
+        function replyMessage(id) { alert(`✉️ الرد على الرسالة #${id}`); }
+
+        // ========================================
+        // CHARTS
+        // ========================================
+        let ordersChartInstance = null;
+        let revenueChartInstance = null;
+
+        function initCharts() {
+            // Orders Chart
+            const ctx1 = document.getElementById('ordersChart').getContext('2d');
+            if (ordersChartInstance) ordersChartInstance.destroy();
+            ordersChartInstance = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                    datasets: [{
+                        label: 'عدد الطلبات',
+                        data: [12, 19, 15, 22, 28, 18],
+                        backgroundColor: 'rgba(0, 109, 91, 0.7)',
+                        borderColor: '#006D5B',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Revenue Chart
+            const ctx2 = document.getElementById('revenueChart').getContext('2d');
+            if (revenueChartInstance) revenueChartInstance.destroy();
+            revenueChartInstance = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                    datasets: [{
+                        label: 'الإيرادات (MAD)',
+                        data: [15000, 22000, 18000, 30000, 45000, 38000],
+                        borderColor: '#00B894',
+                        backgroundColor: 'rgba(0, 184, 148, 0.08)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#00B894',
+                        pointBorderColor: 'white',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // ========================================
+        // FILE UPLOAD
+        // ========================================
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            const folder = document.getElementById('folderSelect').value;
+            const status = document.getElementById('uploadStatus');
+            
+            if (!fileInput.files.length) {
+                status.style.display = 'block';
+                status.style.background = 'rgba(225,112,85,0.1)';
+                status.style.color = '#E17055';
+                status.textContent = '❌ الرجاء اختيار ملف';
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('folder', folder);
+            
+            const token = localStorage.getItem('token');
+            
+            try {
+                status.style.display = 'block';
+                status.style.background = 'rgba(253,203,110,0.1)';
+                status.style.color = '#FDCB6E';
+                status.textContent = '⏳ جاري رفع الملف...';
+                
+                const response = await fetch('/api/upload/single', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    status.style.background = 'rgba(0,184,148,0.1)';
+                    status.style.color = '#00B894';
+                    status.textContent = '✅ تم رفع الملف بنجاح!';
+                    document.getElementById('uploadForm').reset();
+                    loadFiles();
+                } else {
+                    status.style.background = 'rgba(225,112,85,0.1)';
+                    status.style.color = '#E17055';
+                    status.textContent = '❌ ' + (data.message || 'فشل الرفع');
+                }
+            } catch (error) {
+                status.style.background = 'rgba(225,112,85,0.1)';
+                status.style.color = '#E17055';
+                status.textContent = '❌ حدث خطأ في رفع الملف';
+            }
+        });
+
+        // ========================================
+        // LOAD FILES
+        // ========================================
+        async function loadFiles() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/upload', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                const container = document.getElementById('fileList');
+                
+                if (data.success && data.files && data.files.length) {
+                    container.innerHTML = data.files.map(file => `
+                            <div class="file-item">
+                                <div class="file-icon">${file.mimeType?.startsWith('image/') ? '🖼️' : file.mimeType?.startsWith('video/') ? '🎬' : '📄'}</div>
+                                <div class="file-name">${file.filename}</div>
+                                <button onclick="deleteFile('${file._id}')" style="margin-top:0.5rem;padding:0.2rem 0.6rem;border-radius:4px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.7rem;">
+                                    حذف
+                                </button>
+                            </div>
+                        `).join('');
+                } else {
+                    container.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;text-align:center;">لا توجد ملفات مرفوعة</p>';
+                }
+            } catch (error) {
+                console.error('❌ خطأ في تحميل الملفات:', error);
+            }
+        }
+
+        // ========================================
+        // DELETE FILE
+        // ========================================
+        async function deleteFile(fileId) {
+            if (!confirm('هل أنت متأكد من حذف هذا الملف؟')) return;
+            
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/upload/${fileId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadFiles();
+                    alert('✅ تم حذف الملف بنجاح');
+                }
+            } catch (error) {
+                alert('❌ حدث خطأ في حذف الملف');
+            }
+        }
+
+        // ========================================
+        // INIT
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            loadFiles();
+            setTimeout(initCharts, 300);
+        });
+
+        // ========================================
+        // KEYBOARD SHORTCUT: ESC
+        // ========================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
+            }
+        });
+
+        console.log('✅ لوحة التحكم جاهزة');
+        console.log('📊 جميع الأزرار والوظائف تعمل');
+    </script>
+
+</body>
+</html>

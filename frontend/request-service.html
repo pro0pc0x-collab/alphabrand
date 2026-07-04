@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اطلب خدمة - Digital Agency MA</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/darkmode.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+<div class="page-loader" id="pageLoader">
+  <div class="page-loader-logo">🚀</div>
+  <div class="page-loader-bar"><div class="page-loader-progress"></div></div>
+</div>
+
+<header class="navbar" id="navbar">
+  <nav class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🚀</div>
+      <div class="nav-logo-text"><span>Digital Agency</span><span>MOROCCO</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="services.html">الخدمات</a></li>
+      <li><a href="portfolio.html">أعمالنا</a></li>
+      <li><a href="pricing.html">الأسعار</a></li>
+      <li><a href="contact.html">تواصل</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon-dark">🌙</span><span class="theme-icon-light">☀️</span></button>
+      <a href="dashboard/client/dashboard.html" class="btn btn-ghost btn-sm">لوحتي</a>
+    </div>
+  </nav>
+</header>
+
+<main style="padding-top:100px;padding-bottom:4rem">
+  <div class="container" style="max-width:800px">
+    <div class="section-header" data-reveal>
+      <div class="badge">🚀 طلب خدمة</div>
+      <h1>ابدأ مشروعك <span class="text-gradient">معنا</span></h1>
+      <p>أخبرنا عن مشروعك وسنتواصل معك خلال 24 ساعة بعرض سعر مجاني</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:3rem" data-reveal>
+      <div class="step-indicator active" data-step="1">
+        <div class="step-circle">1</div>
+        <span>نوع الخدمة</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-indicator" data-step="2">
+        <div class="step-circle">2</div>
+        <span>تفاصيل المشروع</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-indicator" data-step="3">
+        <div class="step-circle">3</div>
+        <span>بياناتك</span>
+      </div>
+    </div>
+
+    <div class="card" data-reveal>
+      <!-- STEP 1: Service Type -->
+      <div id="step1">
+        <h3 style="margin-bottom:1.5rem;font-size:1.25rem">ما الخدمة التي تحتاجها؟</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem" id="serviceOptions">
+          <div class="service-option" data-value="تطوير تطبيق Android/iOS" onclick="selectService(this)">
+            <span style="font-size:2rem">📱</span>
+            <p style="font-weight:600;margin-top:0.5rem">تطبيق موبايل</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Android & iOS</p>
+          </div>
+          <div class="service-option" data-value="تطوير موقع إلكتروني" onclick="selectService(this)">
+            <span style="font-size:2rem">🌐</span>
+            <p style="font-weight:600;margin-top:0.5rem">موقع إلكتروني</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Landing / E-commerce</p>
+          </div>
+          <div class="service-option" data-value="التسويق الرقمي" onclick="selectService(this)">
+            <span style="font-size:2rem">📊</span>
+            <p style="font-weight:600;margin-top:0.5rem">تسويق رقمي</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">سوشيال ميديا</p>
+          </div>
+          <div class="service-option" data-value="التصميم الجرافيكي" onclick="selectService(this)">
+            <span style="font-size:2rem">🎨</span>
+            <p style="font-weight:600;margin-top:0.5rem">تصميم جرافيك</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">شعار / هوية</p>
+          </div>
+          <div class="service-option" data-value="الإعلانات الممولة" onclick="selectService(this)">
+            <span style="font-size:2rem">🎯</span>
+            <p style="font-weight:600;margin-top:0.5rem">إعلانات ممولة</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Meta / Google</p>
+          </div>
+          <div class="service-option" data-value="التصوير الجوي بالدرون" onclick="selectService(this)">
+            <span style="font-size:2rem">🚁</span>
+            <p style="font-weight:600;margin-top:0.5rem">درون</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">تصوير جوي 4K</p>
+          </div>
+          <div class="service-option" data-value="الهوية البصرية" onclick="selectService(this)">
+            <span style="font-size:2rem">✨</span>
+            <p style="font-weight:600;margin-top:0.5rem">هوية بصرية</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Brand Identity</p>
+          </div>
+          <div class="service-option" data-value="اللفتات الإشهارية" onclick="selectService(this)">
+            <span style="font-size:2rem">🪧</span>
+            <p style="font-weight:600;margin-top:0.5rem">لفتات إشهارية</p>
+            <p style="font-size:0.75rem;color:var(--text-muted)">Banners / Signage</p>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:2rem;width:100%;justify-content:center" onclick="goToStep(2)" id="step1Next" disabled>
+          التالي ←
+        </button>
+      </div>
+
+      <!-- STEP 2: Project Details -->
+      <div id="step2" style="display:none">
+        <h3 style="margin-bottom:1.5rem;font-size:1.25rem">تفاصيل مشروعك</h3>
+        <div class="form-group">
+          <label class="form-label">عنوان المشروع *</label>
+          <input type="text" class="form-control" id="projectTitle" placeholder="مثال: تطبيق متجر إلكتروني لبيع الملابس" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">وصف المشروع *</label>
+          <textarea class="form-control" id="projectDesc" rows="5" placeholder="اشرح لنا فكرة مشروعك بالتفصيل: ما الهدف؟ من هو جمهورك المستهدف؟ ما المميزات الأساسية المطلوبة؟"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الميزانية التقريبية (درهم)</label>
+            <select class="form-control" id="projectBudget">
+              <option value="">اختر الميزانية</option>
+              <option value="1000">أقل من 1,000 درهم</option>
+              <option value="3000">1,000 - 3,000 درهم</option>
+              <option value="5000">3,000 - 5,000 درهم</option>
+              <option value="10000">5,000 - 10,000 درهم</option>
+              <option value="20000">10,000 - 20,000 درهم</option>
+              <option value="50000">أكثر من 20,000 درهم</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">الموعد النهائي المطلوب</label>
+            <input type="date" class="form-control" id="projectDeadline" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">مرفقات (صور، مستندات، مراجع)</label>
+          <div id="dropZone" style="
+            border:2px dashed rgba(0,109,91,0.3);border-radius:1rem;
+            padding:2rem;text-align:center;cursor:pointer;
+            transition:all 0.3s;background:rgba(0,109,91,0.03);
+          " onclick="document.getElementById('fileInput').click()"
+             ondragover="event.preventDefault();this.style.borderColor='var(--primary)'"
+             ondragleave="this.style.borderColor='rgba(0,109,91,0.3)'"
+             ondrop="handleDrop(event)">
+            <p style="font-size:2rem;margin-bottom:0.5rem">📎</p>
+            <p style="font-size:0.875rem;color:var(--text-secondary)">اسحب الملفات هنا أو <span style="color:var(--primary-light)">اضغط للاختيار</span></p>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem">PDF, PNG, JPG, ZIP - حتى 50MB</p>
+          </div>
+          <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.png,.jpg,.jpeg,.zip,.doc,.docx" onchange="handleFiles(this.files)" />
+          <div id="fileList" style="margin-top:0.75rem;display:flex;flex-wrap:wrap;gap:0.5rem"></div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:1rem">
+          <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="goToStep(1)">← السابق</button>
+          <button class="btn btn-primary" style="flex:2;justify-content:center" onclick="goToStep(3)">التالي ←</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Personal Info -->
+      <div id="step3" style="display:none">
+        <h3 style="margin-bottom:1.5rem;font-size:1.25rem">بياناتك الشخصية</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">الاسم الكامل *</label>
+            <input type="text" class="form-control" id="clientName" placeholder="اسمك الكامل" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">رقم الواتساب *</label>
+            <input type="tel" class="form-control" id="clientPhone" placeholder="+212 6XX XXX XXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">البريد الإلكتروني *</label>
+          <input type="email" class="form-control" id="clientEmail" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">كيف عرفت عنا؟</label>
+          <select class="form-control" id="clientSource">
+            <option value="social">سوشيال ميديا</option>
+            <option value="google">جوجل</option>
+            <option value="friend">صديق / معارف</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div style="background:rgba(0,109,91,0.08);border:1px solid rgba(0,109,91,0.2);border-radius:1rem;padding:1rem;margin:1rem 0;font-size:0.875rem">
+          <p style="color:var(--text-secondary)">📋 <strong style="color:var(--text-primary)">ملاحظة:</strong> سيتم التواصل معك خلال 24 ساعة بعرض سعر مفصل. الاستشارة مجانية تماماً.</p>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:1rem">
+          <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="goToStep(2)">← السابق</button>
+          <button class="btn btn-primary" style="flex:2;justify-content:center" onclick="submitOrder()" id="submitBtn">
+            🚀 إرسال الطلب
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="stepSuccess" style="display:none;text-align:center;padding:2rem 0">
+        <div style="font-size:4rem;margin-bottom:1rem;animation:float 3s ease-in-out infinite">🎉</div>
+        <h3 style="font-size:1.5rem;margin-bottom:0.75rem">تم إرسال طلبك بنجاح!</h3>
+        <p style="color:var(--text-secondary);margin-bottom:2rem">سنتواصل معك خلال 24 ساعة عبر الواتساب أو البريد الإلكتروني بعرض سعر مفصل.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="dashboard/client/dashboard.html" class="btn btn-primary">📊 تتبع طلبك</a>
+          <a href="https://wa.me/212600000000" target="_blank" class="btn btn-ghost" style="color:#25D366;border-color:rgba(37,211,102,0.3)">💬 واتساب</a>
+          <a href="index.html" class="btn btn-outline">🏠 الرئيسية</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+<a href="https://wa.me/212600000000" target="_blank" class="whatsapp-btn">💬</a>
+
+<style>
+.service-option {
+  background:var(--glass-bg);border:2px solid var(--glass-border);
+  border-radius:1rem;padding:1.25rem;text-align:center;cursor:pointer;
+  transition:all 0.25s ease;
+}
+.service-option:hover { border-color:var(--border-primary);background:rgba(0,109,91,0.08);transform:translateY(-3px); }
+.service-option.selected { border-color:var(--primary);background:rgba(0,109,91,0.12);box-shadow:0 0 0 3px rgba(0,109,91,0.15); }
+.step-indicator { display:flex;flex-direction:column;align-items:center;gap:0.4rem; }
+.step-circle {
+  width:36px;height:36px;border-radius:50%;border:2px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:0.875rem;color:var(--text-muted);
+  transition:all 0.3s;
+}
+.step-indicator.active .step-circle { border-color:var(--primary);background:var(--primary);color:white; }
+.step-indicator.done .step-circle { border-color:var(--primary);background:transparent;color:var(--primary-light); }
+.step-indicator span { font-size:0.75rem;color:var(--text-muted);white-space:nowrap; }
+.step-indicator.active span { color:var(--primary-light); }
+.step-line { flex:1;height:2px;background:var(--border);max-width:80px;border-radius:1px; }
+</style>
+
+<script src="js/main.js"></script>
+<script>
+let selectedService = '';
+let selectedFiles = [];
+
+// Pre-select service from URL
+const urlService = new URLSearchParams(window.location.search).get('service');
+if (urlService) {
+  document.querySelectorAll('.service-option').forEach(opt => {
+    if (opt.dataset.value.toLowerCase().includes(urlService)) {
+      selectService(opt);
+    }
+  });
+}
+
+function selectService(el) {
+  document.querySelectorAll('.service-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedService = el.dataset.value;
+  document.getElementById('step1Next').disabled = false;
+}
+
+function goToStep(n) {
+  if (n === 2 && !selectedService) { showToast('اختر نوع الخدمة أولاً', 'warning'); return; }
+  if (n === 3) {
+    const title = document.getElementById('projectTitle').value.trim();
+    const desc = document.getElementById('projectDesc').value.trim();
+    if (!title || desc.length < 20) { showToast('الرجاء ملء عنوان ووصف المشروع (20 حرف على الأقل)', 'error'); return; }
+  }
+  [1,2,3].forEach(i => {
+    const el = document.getElementById(`step${i}`);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  });
+  document.querySelectorAll('.step-indicator').forEach((ind, idx) => {
+    ind.classList.toggle('active', idx + 1 === n);
+    ind.classList.toggle('done', idx + 1 < n);
+  });
+}
+
+function handleFiles(files) {
+  selectedFiles = [...selectedFiles, ...Array.from(files)];
+  renderFileList();
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').style.borderColor = 'rgba(0,109,91,0.3)';
+  handleFiles(e.dataTransfer.files);
+}
+function renderFileList() {
+  document.getElementById('fileList').innerHTML = selectedFiles.map((f, i) => `
+    <div style="display:flex;align-items:center;gap:0.5rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:0.5rem;padding:0.4rem 0.75rem;font-size:0.75rem">
+      📎 ${f.name} <span style="color:var(--text-muted)">(${(f.size/1024/1024).toFixed(1)}MB)</span>
+      <button onclick="selectedFiles.splice(${i},1);renderFileList()" style="background:none;border:none;color:var(--accent);cursor:pointer;margin-right:auto">✕</button>
+    </div>
+  `).join('');
+}
+
+async function submitOrder() {
+  const name = document.getElementById('clientName').value.trim();
+  const phone = document.getElementById('clientPhone').value.trim();
+  const email = document.getElementById('clientEmail').value.trim();
+  if (!name || !phone || !email) { showToast('الرجاء ملء جميع الحقول المطلوبة', 'error'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<span class="loader"></span> جاري الإرسال...';
+  btn.disabled = true;
+
+  try {
+    // Try to register/login, then submit order
+    let token = localStorage.getItem('token');
+    if (!token) {
+      try {
+        const reg = await fetch('/api/auth/register', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ name, email, phone, password: Math.random().toString(36).slice(2) + 'A1!' })
+        });
+        const regData = await reg.json();
+        if (regData.token) { token = regData.token; localStorage.setItem('token', token); }
+      } catch {}
+    }
+
+    const formData = new FormData();
+    formData.append('serviceType', selectedService);
+    formData.append('title', document.getElementById('projectTitle').value);
+    formData.append('description', document.getElementById('projectDesc').value);
+    formData.append('budget', document.getElementById('projectBudget').value);
+    formData.append('deadline', document.getElementById('projectDeadline').value);
+    selectedFiles.forEach(f => formData.append('attachments', f));
+
+    const res = await fetch('/api/orders', {
+      method:'POST',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success || res.ok) {
+      [1,2,3].forEach(i => { const el = document.getElementById(`step${i}`); if(el) el.style.display='none'; });
+      document.getElementById('stepSuccess').style.display = 'block';
+    } else {
+      // If auth failed, still show success (contact form fallback)
+      await submitContactFallback(name, email, phone);
+    }
+  } catch {
+    await submitContactFallback(
+      document.getElementById('clientName').value,
+      document.getElementById('clientEmail').value,
+      document.getElementById('clientPhone').value
+    );
+  }
+}
+
+async function submitContactFallback(name, email, phone) {
+  try {
+    await fetch('/api/contact', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name, email, phone,
+        subject: `طلب خدمة: ${selectedService}`,
+        message: `${document.getElementById('projectTitle').value}\n\n${document.getElementById('projectDesc').value}`,
+        serviceType: selectedService,
+        budget: document.getElementById('projectBudget').value,
+      })
+    });
+  } catch {}
+  [1,2,3].forEach(i => { const el = document.getElementById(`step${i}`); if(el) el.style.display='none'; });
+  document.getElementById('stepSuccess').style.display = 'block';
+}
+</script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>
