@@ -14,7 +14,7 @@ const app = express();
 // ========================================
 // ✅ تعريف المسار الصحيح لـ frontend
 // ========================================
-const frontendPath = path.resolve(__dirname, '../frontend');
+const frontendPath = path.resolve(__dirname, './frontend');
 console.log('📂 مسار frontend:', frontendPath);
 
 // التحقق من وجود الملفات
