@@ -131,6 +131,21 @@ exports.getMe = async (req, res, next) => {
 };
 
 // ========================================
+// تحديث بيانات المستخدم الحالي
+// ========================================
+exports.updateMe = async (req, res, next) => {
+    try {
+        const updates = {};
+        ['name', 'phone'].forEach(field => {
+            if (req.body[field] !== undefined) updates[field] = req.body[field];
+        });
+
+        const user = await User.findByIdAndUpdate(req.user.id, updates, { new: true, runValidators: true });
+        res.status(200).json({ success: true, user });
+    } catch (err) { next(err); }
+};
+
+// ========================================
 // تصدير generateToken للاستخدام في routes
 // ========================================
 exports.generateToken = generateToken;

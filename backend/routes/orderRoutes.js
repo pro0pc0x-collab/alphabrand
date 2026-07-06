@@ -10,15 +10,17 @@ const { upload } = require('../middleware/upload');
 const { orderRules, validate } = require('../utils/validators');
 
 router.use(protect);
-router.use(authorize('admin', 'manager'));
 
-router.get('/stats', authorize('admin'), getStats);
-router.get('/', authorize('admin'), getAllOrders);
+// Client routes
+router.post('/', orderRules, validate, upload.array('attachments', 5), createOrder);
 router.get('/my', getMyOrders);
 router.get('/:id', getOrder);
-router.post('/', orderRules, validate, upload.array('attachments', 5), createOrder);
-router.put('/:id/status', authorize('admin'), updateOrderStatus);
-router.post('/:id/quotation', authorize('admin'), sendQuotation);
 router.put('/:id/accept-quotation', acceptQuotation);
+
+// Admin / manager routes
+router.get('/admin/stats', authorize('admin'), getStats);
+router.get('/admin/all', authorize('admin', 'manager'), getAllOrders);
+router.put('/:id/status', authorize('admin', 'manager'), updateOrderStatus);
+router.post('/:id/quotation', authorize('admin', 'manager'), sendQuotation);
 
 module.exports = router;

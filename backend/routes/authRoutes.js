@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const { register, login, logout, getMe, generateToken } = require('../controllers/authController');
+const { register, login, logout, getMe, updateMe, generateToken } = require('../controllers/authController');
 const { protect } = require('../middleware/auth');
 
 // ========================================
@@ -12,6 +12,8 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/logout', logout);
 router.get('/me', protect, getMe);
+router.put('/update', protect, updateMe);
+router.post('/update', protect, updateMe);
 
 // ========================================
 // ✅ مسار Google (تسجيل الدخول بجوجل)

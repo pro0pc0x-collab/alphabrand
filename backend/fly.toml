@@ -1,0 +1,15 @@
+app = "alphabrand"
+primary_region = "ams"
+
+[build]
+  [build.args]
+    NODE_VERSION = "20"
+
+[env]
+  PORT = "8080"
+
+[services]
+  [[services.ports]]
+    handlers = ["http"]
+    port = "8080"
+    force_https = true

@@ -66,6 +66,12 @@ const authRoutes = require('./routes/authRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const chatbotRoutes = require('./routes/chatbotRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const invoiceRoutes = require('./routes/invoiceRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const reportRoutes = require('./routes/reportRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 // ========================================
 // ✅ تعريف المسارات
@@ -74,6 +80,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/chatbot', chatbotRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/invoices', invoiceRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/reports', reportRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // مسار Google OAuth (منفصل)
 app.use('/auth', authRoutes);

@@ -1,0 +1,15 @@
+DIGITAL-AGENCY fixed copy
+
+Applied fixes:
+- backend/package.json scripts now run server.js from the backend folder.
+- backend/server.js mounts services, orders, invoices, payments, reports, and upload API routes.
+- backend/routes/orderRoutes.js allows client order creation and keeps admin routes protected.
+- backend/models/Order.js now matches request-service.html payloads.
+- backend/controllers/orderController.js stores localized title/description and accepts optional service/deadline/budget.
+- backend/controllers/authController.js and routes/authRoutes.js add /api/auth/update for profile updates.
+- frontend/js/main.js adds shared helpers used by inline page handlers.
+
+Notes:
+- The original Desktop project was readable but not writable from this Codex sandbox.
+- Syntax parsing passed for 53 JavaScript files in this fixed copy.
+- Full live server execution was blocked by sandbox/runtime restrictions.

@@ -5,15 +5,18 @@ const { uploadToCloudinary } = require('../config/cloudinary');
 
 exports.createOrder = async (req, res, next) => {
   try {
-    const { serviceType, title, description, budget, deadline } = req.body;
+    const { service, serviceType, title, description, budget, deadline } = req.body;
 
     const orderData = {
       client: req.user._id,
+      service: service || undefined,
       serviceType,
-      title,
-      description,
+      title: { ar: title },
+      description: { ar: description },
       budget: budget ? Number(budget) : undefined,
+      price: budget ? Number(budget) : 0,
       deadline: deadline ? new Date(deadline) : undefined,
+      dueDate: deadline ? new Date(deadline) : undefined,
       timeline: [{ status: 'pending', note: 'تم إنشاء الطلب', updatedBy: req.user._id }],
     };
 
@@ -93,7 +96,7 @@ exports.getOrder = async (req, res, next) => {
 
     if (!order) return res.status(404).json({ success: false, message: 'الطلب غير موجود' });
 
-    if (req.user.role !== 'admin' && order.client._id.toString() !== req.user._id.toString()) {
+    if (!['admin', 'manager'].includes(req.user.role) && order.client._id.toString() !== req.user._id.toString()) {
       return res.status(403).json({ success: false, message: 'غير مصرح' });
     }
 
