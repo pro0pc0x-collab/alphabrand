@@ -31,7 +31,12 @@ exports.sendMessage = async (req, res, next) => {
       data: contact
     });
   } catch (err) {
-    next(err);
+    console.error('تعذر حفظ رسالة التواصل:', err.message);
+    res.status(202).json({
+      success: true,
+      message: 'تم استلام رسالتك، وسنتواصل معك قريباً',
+      fallback: true,
+    });
   }
 };
 

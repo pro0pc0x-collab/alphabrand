@@ -55,7 +55,9 @@ require('./config/passport');
 // ========================================
 // ✅ الاتصال بقاعدة البيانات
 // ========================================
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 5000,
+})
     .then(() => console.log('✅ تم الاتصال بقاعدة البيانات'))
     .catch(err => console.error('❌ فشل الاتصال بقاعدة البيانات:', err.message));
 
@@ -101,12 +103,18 @@ app.get('/', (req, res) => {
 // ✅ مسار لجميع صفحات HTML
 // ========================================
 app.get('*.html', (req, res) => {
-    const filePath = path.join(frontendPath, req.path);
-    if (fs.existsSync(filePath)) {
-        res.sendFile(filePath);
-    } else {
-        res.status(404).send('الصفحة غير موجودة');
+    const frontendFile = path.join(frontendPath, req.path);
+    const dashboardFile = path.join(__dirname, '../dashboard', req.path.replace(/^\/dashboard\//, ''));
+
+    if (req.path.startsWith('/dashboard/') && fs.existsSync(dashboardFile)) {
+        return res.sendFile(dashboardFile);
     }
+
+    if (fs.existsSync(frontendFile)) {
+        return res.sendFile(frontendFile);
+    }
+
+    res.status(404).send('الصفحة غير موجودة');
 });
 
 // ========================================
