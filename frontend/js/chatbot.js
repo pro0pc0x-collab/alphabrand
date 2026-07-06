@@ -1,112 +1,87 @@
 // ========================================
-// CHATBOT.JS - نسخة مبسطة
+// CHATBOT.JS - النسخة الاحترافية
 // ========================================
 
-console.log('✅ chatbot.js تم تحميله');
+// ✅ API URL - الرابط النهائي للخادم
+const CHATBOT_API = 'https://alphabrand.fly.dev/api/chatbot';
+
+let isChatOpen = false;
 
 // ========================================
 // فتح/إغلاق الشات بوت
 // ========================================
 function toggleChatbot() {
-    console.log('🔘 toggleChatbot تم استدعاؤها');
-    
     const widget = document.getElementById('chatbotWidget');
     const fab = document.getElementById('chatbotFab');
     
-    if (!widget) {
-        console.error('❌ chatbotWidget غير موجود');
-        return;
-    }
+    if (!widget || !fab) return;
     
-    // تبديل العرض
-    if (widget.style.display === 'none' || widget.style.display === '') {
-        widget.style.display = 'flex';
-        if (fab) fab.style.display = 'none';
-        console.log('🤖 الشات بوت: مفتوح');
-    } else {
-        widget.style.display = 'none';
-        if (fab) fab.style.display = 'flex';
-        console.log('🤖 الشات بوت: مغلق');
+    isChatOpen = !isChatOpen;
+    widget.classList.toggle('active', isChatOpen);
+    fab.style.display = isChatOpen ? 'none' : 'flex';
+    
+    if (isChatOpen) {
+        const input = document.getElementById('chatbotInput');
+        if (input) setTimeout(() => input.focus(), 100);
     }
 }
 
 // ========================================
-// إرسال رسالة
+// إرسال رسالة إلى الشات بوت
 // ========================================
-function sendChatMessage() {
-    console.log('📤 sendChatMessage تم استدعاؤها');
-    
+async function sendChatMessage() {
     const input = document.getElementById('chatbotInput');
-    if (!input) {
-        console.error('❌ chatbotInput غير موجود');
-        return;
-    }
+    if (!input) return;
     
     const message = input.value.trim();
-    if (!message) {
-        console.log('📝 رسالة فارغة');
-        return;
-    }
-    
-    console.log('📝 الرسالة:', message);
+    if (!message) return;
     
     const messagesContainer = document.getElementById('chatbotMessages');
-    if (!messagesContainer) {
-        console.error('❌ chatbotMessages غير موجود');
-        return;
-    }
-
+    if (!messagesContainer) return;
+    
     // إضافة رسالة المستخدم
     const userMsg = document.createElement('div');
     userMsg.className = 'msg user';
     userMsg.textContent = message;
     messagesContainer.appendChild(userMsg);
     input.value = '';
-
+    
     // إضافة رسالة انتظار
     const botMsg = document.createElement('div');
     botMsg.className = 'msg bot';
     botMsg.textContent = '⏳ جاري التفكير...';
     messagesContainer.appendChild(botMsg);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    // إرسال إلى الخادم
-    fetch('/api/chatbot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('📥 رد الخادم:', data);
+    
+    try {
+        // ✅ استخدام الرابط الجديد
+        const response = await fetch(CHATBOT_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+        
+        const data = await response.json();
+        
         if (data.reply) {
             botMsg.textContent = data.reply;
         } else {
-            botMsg.textContent = '⚠️ عذراً، لم أستطع معالجة رسالتك.';
+            botMsg.textContent = '⚠️ عذراً، لم أستطع معالجة رسالتك. حاول مرة أخرى.';
         }
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    })
-    .catch(error => {
-        console.error('❌ خطأ:', error);
-        botMsg.textContent = '❌ عذراً، حدث خطأ في الاتصال بالخادم.';
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    });
+    } catch (error) {
+        console.error('❌ خطأ في الشات بوت:', error);
+        botMsg.textContent = '❌ عذراً، حدث خطأ في الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
+    }
+    
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 // ========================================
-// ربط الأحداث عند تحميل الصفحة
+// إرسال بالضغط على Enter
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ DOM جاهز');
+    console.log('✅ AlphaBrand - chatbot.js تم تحميله');
     
-    // ربط زر الإرسال
-    const sendBtn = document.querySelector('.chatbot-input button');
-    if (sendBtn) {
-        sendBtn.addEventListener('click', sendChatMessage);
-        console.log('✅ زر الإرسال تم ربطه');
-    }
-    
-    // ربط Enter
     const input = document.getElementById('chatbotInput');
     if (input) {
         input.addEventListener('keydown', function(e) {
@@ -115,17 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 sendChatMessage();
             }
         });
-        console.log('✅ حقل الإدخال تم ربطه');
     }
     
-    // ربط زر الشات بوت (بديل لـ onclick)
-    const fab = document.getElementById('chatbotFab');
-    if (fab) {
-        // إزالة onclick القديم
-        fab.removeAttribute('onclick');
-        fab.addEventListener('click', toggleChatbot);
-        console.log('✅ زر الشات بوت تم ربطه');
+    // ربط زر الإرسال
+    const sendBtn = document.querySelector('.chatbot-input button');
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendChatMessage);
     }
 });
 
-console.log('✅ chatbot.js تم التحميل بالكامل');
+console.log('🚀 AlphaBrand - الشات بوت جاهز');

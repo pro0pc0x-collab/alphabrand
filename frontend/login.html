@@ -3,28 +3,49 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>تسجيل الدخول - Digital Agency MA</title>
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <title>تسجيل الدخول - AlphaBrand</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        .login-container {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0A0A0A;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: var(--bg-primary);
         }
-        .login-box {
-            background: var(--bg-card);
+        .login-container {
+            background: #1A1A1A;
             padding: 3rem;
             border-radius: 16px;
-            border: 1px solid var(--border-secondary);
-            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.06);
+            max-width: 420px;
             width: 100%;
             text-align: center;
         }
-        .login-box h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .login-box .subtitle { color: var(--text-muted); margin-bottom: 2rem; }
+        .login-container .logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .login-container h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+        .login-container h1 span {
+            background: linear-gradient(135deg, #006D5B, #00B894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .login-container .subtitle {
+            color: #6B6B6B;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
         .btn-google {
             display: flex;
             align-items: center;
@@ -39,54 +60,126 @@
             text-decoration: none;
             width: 100%;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        .btn-google:hover { transform: scale(1.02); box-shadow: 0 4px 20px rgba(255,255,255,0.2); }
+        .btn-google:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+        }
         .btn-google svg { width: 20px; height: 20px; }
-        .divider { margin: 20px 0; color: var(--text-muted); font-size: 13px; }
-        .back-link { color: var(--primary-light); text-decoration: none; }
+        .divider {
+            margin: 1.5rem 0;
+            color: #6B6B6B;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+        .back-link {
+            color: #00B894;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover { color: #00a381; }
+        .status-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .status-message.success {
+            display: block;
+            background: rgba(0, 184, 148, 0.1);
+            color: #00B894;
+            border: 1px solid rgba(0, 184, 148, 0.2);
+        }
+        .status-message.error {
+            display: block;
+            background: rgba(225, 112, 85, 0.1);
+            color: #E17055;
+            border: 1px solid rgba(225, 112, 85, 0.2);
+        }
+        .loading {
+            display: none;
+            margin-top: 1rem;
+            color: #00B894;
+            font-size: 0.9rem;
+        }
+        .loading.active { display: block; }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
-            <h1>🚀 <span class="text-gradient">Digital Agency</span></h1>
-            <p class="subtitle">سجل الدخول للوصول إلى لوحة التحكم</p>
-            
-            <a href="/auth/google" class="btn-google">
-                <svg viewBox="0 0 48 48" width="20" height="20">
-                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-                    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-                    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-                    <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-                </svg>
-                تسجيل الدخول بحساب Google
-            </a>
-            
-            <div class="divider">─ أو ─</div>
-            <p style="color: var(--text-muted); font-size: 13px;">
-                ليس لديك حساب؟ <a href="request-service.html" class="back-link">اطلب خدمة</a>
-            </p>
-            <br>
-            <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
-        </div>
+        <div class="logo">🚀</div>
+        <h1><span>Alpha</span>Brand</h1>
+        <p class="subtitle">سجل الدخول للوصول إلى لوحة التحكم</p>
+        
+        <!-- ✅ رابط Google - الرابط النهائي للخادم -->
+        <a href="https://alphabrand.fly.dev/auth/google" class="btn-google">
+            <svg viewBox="0 0 48 48">
+                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+            </svg>
+            تسجيل الدخول بحساب Google
+        </a>
+        
+        <div class="divider">أو</div>
+        
+        <p style="color: #6B6B6B; font-size: 0.85rem;">
+            ليس لديك حساب؟ <a href="request-service.html" class="back-link">اطلب خدمة</a>
+        </p>
+        
+        <div class="loading" id="loading">⏳ جاري تسجيل الدخول...</div>
+        <div class="status-message" id="statusMessage"></div>
+        
+        <br>
+        <a href="index.html" class="back-link">← العودة إلى الرئيسية</a>
     </div>
-    
+
     <script>
+        // ========================================
         // استقبال التوكن من Google
+        // ========================================
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
             const error = urlParams.get('error');
             
+            const loading = document.getElementById('loading');
+            const statusMsg = document.getElementById('statusMessage');
+            
             if (error) {
-                alert('❌ فشل تسجيل الدخول: ' + error);
+                statusMsg.className = 'status-message error';
+                statusMsg.textContent = '❌ فشل تسجيل الدخول: ' + decodeURIComponent(error);
+                return;
             }
             
             if (token) {
-                console.log('✅ تم استلام التوكن');
-                localStorage.setItem('token', token);
-                alert('✅ تم تسجيل الدخول بنجاح!');
-                window.location.href = '/dashboard/admin/dashboard.html';
+                loading.classList.add('active');
+                statusMsg.className = 'status-message';
+                statusMsg.style.display = 'none';
+                
+                setTimeout(() => {
+                    localStorage.setItem('token', token);
+                    loading.classList.remove('active');
+                    statusMsg.className = 'status-message success';
+                    statusMsg.textContent = '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/dashboard/admin/dashboard.html';
+                    }, 1500);
+                }, 500);
             }
         });
     </script>

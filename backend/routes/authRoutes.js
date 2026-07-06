@@ -48,7 +48,7 @@ router.get('/google/callback',
             );
             
             console.log('✅ تم إنشاء التوكن');
-            res.redirect(`http://localhost:5000/login.html?token=${token}`);
+           res.redirect(`https://alphabrand.vercel.app/login.html?token=${token}`);
         } catch (error) {
             console.error('❌ خطأ في إنشاء التوكن:', error.message);
             res.redirect('/login.html?error=token_failed');

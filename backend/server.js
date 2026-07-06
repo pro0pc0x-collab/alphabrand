@@ -29,7 +29,11 @@ if (fs.existsSync(indexHtml)) {
 // ✅ إعدادات CORS
 // ========================================
 app.use(cors({
-    origin: '*',
+    origin: [
+        'https://alphabrand.vercel.app',
+        'https://alphabrand.fly.dev',
+        'http://localhost:5000'  // للتطوير المحلي
+    ],
     credentials: true,
 }));
 
